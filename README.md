@@ -27,7 +27,7 @@ ira ser permitido ao usuario adicionar e gerenciar sua renda e despesas, criar o
 ## :receipt: Mockup/Storyboard
 
 - [Figma](https://www.figma.com/file/J851lhiI8NmmmsGGKvYxrI/Mobile-App-Alexandre?type=design&node-id=0%3A1&mode=design&t=enH74Zprej4nEbhd-1) 
-- FALTA ADICIONAR
-1. Tela de adicionar bancos
-2. Tela de adiconar transações
-3. Tela de adicionar despesas
+- Falta Adicionar
+  1. Tela de adicionar bancos
+  2. Tela de adiconar transações
+  3. Tela de adicionar despesas
