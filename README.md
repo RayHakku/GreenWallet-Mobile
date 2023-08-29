@@ -31,3 +31,13 @@ ira ser permitido ao usuario adicionar e gerenciar sua renda e despesas, criar o
   1. Tela de adicionar bancos
   2. Tela de adiconar transações
   3. Tela de adicionar despesas
+
+## Requisitos
+  1. Autenticacao
+  2. MVP
+  3. Sensor Biometrico
+  4. Menu
+  5. Navigation Bar
+  6. Gradle
+  7. l18n internatinalization
+  8. L10n Localization 
