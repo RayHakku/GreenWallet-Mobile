@@ -31,6 +31,8 @@ ira ser permitido ao usuario adicionar e gerenciar sua renda e despesas, criar o
   1. Tela de adicionar bancos
   2. Tela de adiconar transações
   3. Tela de adicionar despesas
+  4. Tela com sensor biometrico
+  5. Menu
 
 ## Requisitos
   1. Autenticacao
@@ -41,3 +43,5 @@ ira ser permitido ao usuario adicionar e gerenciar sua renda e despesas, criar o
   6. Gradle
   7. l18n internatinalization
   8. L10n Localization 
+  9. Material Design
+  10. Notification Push 
