@@ -1,0 +1,66 @@
+{
+  "name": "white_card",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "J851lhiI8NmmmsGGKvYxrI",
+    "node": "348:663",
+    "version": "4114167443",
+    "component-id": "bf07bfc0c78a702a2cad37578b5a28c56d8efa4e"
+  },
+  "default": "WhiteCard",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "vector",
+        "id": "RectangleInside"
+      }
+    ],
+    "modes": {
+      "WhiteCard": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": "false",
+            "children": [
+              "RectangleInside"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "RectangleInside",
+            "border-radius": "30.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "rectangle_inside.svg"
+          }
+        ]
+      }
+    }
+  },
+  "previews": [
+    {
+      "design": "WhiteCard",
+      "size": {
+        "width": 328.0,
+        "height": 280.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}
