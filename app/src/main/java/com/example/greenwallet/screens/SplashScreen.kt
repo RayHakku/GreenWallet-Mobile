@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,11 +20,27 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.greenwallet.R
+import kotlinx.coroutines.delay
 
-@Preview
+
 @Composable
-fun SplashScreen() {
+fun SplashScreenNav(navController: NavController) {
+    LaunchedEffect(key1 = true ){
+        delay(2500)
+        navController.popBackStack()
+        navController.navigate(ScreensRoutes.GetStartedScreen.route)
+    }
+
+    SplashScreen()
+}
+@Composable
+fun SplashScreen
+            (
+
+) {
+
     Row (
 
         modifier = Modifier
@@ -44,8 +61,15 @@ fun SplashScreen() {
             fontWeight = FontWeight.Bold,
             modifier = Modifier
                 .fillMaxWidth(),
-            textAlign = TextAlign.Left
+            textAlign = TextAlign.Left,
+            lineHeight = 50.sp
         )
 
     }
+}
+
+@Preview
+@Composable
+fun SplashScreenPrev() {
+    //SplashScreen()
 }
