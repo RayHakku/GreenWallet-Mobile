@@ -26,13 +26,11 @@ ira ser permitido ao usuario adicionar e gerenciar sua renda e despesas, criar o
 
 ## :receipt: Mockup/Storyboard
 
-- [Figma](https://www.figma.com/file/J851lhiI8NmmmsGGKvYxrI/Mobile-App-Alexandre?type=design&node-id=0%3A1&mode=design&t=enH74Zprej4nEbhd-1) 
+- [Figma](https://www.figma.com/file/J851lhiI8NmmmsGGKvYxrI/GreenWallet-Mobile?type=design&node-id=2%3A7&mode=design&t=lZ4de6VEOcTIoVjU-1) 
 - Falta Adicionar
   1. Tela de adicionar bancos
   2. Tela de adiconar transações
   3. Tela de adicionar despesas
-  4. Tela com sensor biometrico
-  5. Menu
 
 ## Requisitos
   1. Autenticacao
@@ -43,5 +41,3 @@ ira ser permitido ao usuario adicionar e gerenciar sua renda e despesas, criar o
   6. Gradle
   7. l18n internatinalization
   8. L10n Localization 
-  9. Material Design
-  10. Notification Push 
