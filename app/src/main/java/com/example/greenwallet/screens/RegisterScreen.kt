@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
@@ -29,8 +30,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -39,8 +42,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.greenwallet.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
-
+private var mDatabaseReference: DatabaseReference? = null
+private var mDatabase: FirebaseDatabase? = null
+private var mAuth: FirebaseAuth? = null
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterScreen(
@@ -53,6 +61,8 @@ fun RegisterScreen(
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
     var userTerms by remember { mutableStateOf(false) }
+
+
 
     fun navigateToRegisterSuccess() {
         navController.popBackStack()
@@ -124,7 +134,9 @@ fun RegisterScreen(
                     unfocusedIndicatorColor = Color.Transparent,
                     placeholderColor = Color.hsl(0F, 0F, 0F, 0.3f),
                     cursorColor = Color.hsl(104F, 0.62F, 0.51F, 1f),
-                )
+                ),
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+                singleLine = true,
             )
             Text(
                 text = "Sobrenome",
@@ -149,7 +161,9 @@ fun RegisterScreen(
                     unfocusedIndicatorColor = Color.Transparent,
                     placeholderColor = Color.hsl(0F, 0F, 0F, 0.3f),
                     cursorColor = Color.hsl(104F, 0.62F, 0.51F, 1f),
-                )
+                ),
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+                singleLine = true,
 
             )
             Text(
@@ -169,7 +183,11 @@ fun RegisterScreen(
                         text = "Digite seu CPF",
                     )
                 },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Number,
+                    imeAction = ImeAction.Next
+                ),
+                singleLine = true,
                 colors = TextFieldDefaults.textFieldColors(
                     containerColor = Color.hsl(104f, 0.62f, 0.51f, 0.4f),
                     focusedIndicatorColor = Color.Transparent,
@@ -195,7 +213,11 @@ fun RegisterScreen(
                         text = "Digite seu email",
                     )
                 },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Email,
+                    imeAction = ImeAction.Next
+                ),
+                singleLine = true,
                 colors = TextFieldDefaults.textFieldColors(
                     containerColor = Color.hsl(104f, 0.62f, 0.51f, 0.4f),
                     focusedIndicatorColor = Color.Transparent,
@@ -221,7 +243,11 @@ fun RegisterScreen(
                         text = "Digite sua senha",
                     )
                 },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Password,
+                    imeAction = ImeAction.Next
+                ),
+                singleLine = true,
                 visualTransformation =  PasswordVisualTransformation(),
                 colors = TextFieldDefaults.textFieldColors(
                     containerColor = Color.hsl(104f, 0.62f, 0.51f, 0.4f),
@@ -236,6 +262,7 @@ fun RegisterScreen(
                 modifier = Modifier
                     .padding(start = 5.dp,bottom = 2.dp)
             )
+            val localFocusManager = LocalFocusManager.current
             TextField(
                 value = confirmPassword,
                 onValueChange = { confirmPassword = it },
@@ -249,7 +276,16 @@ fun RegisterScreen(
                         text = "Confirme sua senha",
                     )
                 },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Password,
+                    imeAction = ImeAction.Done
+                ),
+                keyboardActions = KeyboardActions(
+                    onDone = {
+                        localFocusManager.clearFocus()
+                    }
+                ),
+                singleLine = true,
                 visualTransformation =  PasswordVisualTransformation(),
                 colors = TextFieldDefaults.textFieldColors(
                     containerColor = Color.hsl(104f, 0.62f, 0.51f, 0.4f),

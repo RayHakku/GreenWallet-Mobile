@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "239763151681",
+    "firebase_url": "https://greenwallet-4b2b3-default-rtdb.firebaseio.com",
+    "project_id": "greenwallet-4b2b3",
+    "storage_bucket": "greenwallet-4b2b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:239763151681:android:a3148015c0bbdf86f55fc0",
+        "android_client_info": {
+          "package_name": "com.example.greenwallet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "239763151681-g1b01bdo3ccoplh8bu10la7133427kul.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJUvDY5nlO44IsfjNLtp-3rQy0O5uaK7g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "239763151681-g1b01bdo3ccoplh8bu10la7133427kul.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
