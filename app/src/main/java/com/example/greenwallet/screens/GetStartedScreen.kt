@@ -102,7 +102,9 @@ fun GetStarted(
                     )
                 }
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                        navController.navigate(ScreensRoutes.LoginScreen.route)
+                              },
                     shape = MaterialTheme.shapes.small,
                     colors = androidx.compose.material3.ButtonDefaults.buttonColors(
                         containerColor = Color.hsl(104F, 0.62F, 0.51F, 0.1f),

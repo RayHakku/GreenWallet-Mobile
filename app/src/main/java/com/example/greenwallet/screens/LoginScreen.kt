@@ -1,6 +1,7 @@
 package com.example.greenwallet.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,11 +33,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.greenwallet.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen() {
+fun LoginScreen(
+    navController: NavController
+) {
+    fun navigateBack() {
+        navController.navigate(ScreensRoutes.GetStartedScreen.route)
+    }
     var lembrarlogin by remember { mutableStateOf(false) }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -53,6 +61,9 @@ fun LoginScreen() {
             contentDescription = "Arrow Back",
             modifier = Modifier
                 .padding(top = 15.dp)
+                .clickable {
+                    navigateBack()
+                }
         )
         Text(
             text = "Login",
@@ -180,5 +191,5 @@ fun LoginScreen() {
 @Preview (showBackground = true)
 @Composable
 fun LoginPreview() {
-    LoginScreen()
+    LoginScreen(rememberNavController())
 }

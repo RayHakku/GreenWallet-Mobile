@@ -31,12 +31,12 @@ fun SetupNavGraph(
         composable(
             route = ScreensRoutes.RegisterSuccessScreen.route
         ) {
-            RegisterSuccess()
+            RegisterSuccess(navController)
         }
         composable(
             route = ScreensRoutes.LoginScreen.route
         ) {
-            LoginScreen()
+            LoginScreen(navController)
         }
     }
 }

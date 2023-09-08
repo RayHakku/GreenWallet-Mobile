@@ -53,6 +53,19 @@ fun RegisterScreen(
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
     var userTerms by remember { mutableStateOf(false) }
+
+    fun navigateToRegisterSuccess() {
+        navController.popBackStack()
+        navController.navigate(ScreensRoutes.RegisterSuccessScreen.route)
+    }
+    fun navigateToLogin() {
+        navController.popBackStack()
+        navController.navigate(ScreensRoutes.LoginScreen.route)
+    }
+
+    fun navigateBack(){
+        navController.navigate(ScreensRoutes.GetStartedScreen.route)
+    }
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -70,7 +83,9 @@ fun RegisterScreen(
                 contentDescription = "Arrow Back",
                 modifier = Modifier
                     .padding(start = 15.dp)
-                    .clickable { /*TODO*/ }
+                    .clickable {
+                        navigateBack()
+                    }
             )
             Text(
                 text = "Crie sua conta",
@@ -267,7 +282,9 @@ fun RegisterScreen(
             )
              {
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                        navigateToRegisterSuccess()
+                              },
                     shape = MaterialTheme.shapes.small,
                     colors = androidx.compose.material3.ButtonDefaults.buttonColors(
                         containerColor = Color.hsl(104F, 0.62F, 0.51F, 1f),
@@ -286,7 +303,9 @@ fun RegisterScreen(
                     text ="Ja possui uma conta?"
                 )
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                        navigateToLogin()
+                              },
                     shape = MaterialTheme.shapes.small,
                     colors = androidx.compose.material3.ButtonDefaults.buttonColors(
                         containerColor = Color.hsl(104F, 0.62F, 0.51F, 0.1f),

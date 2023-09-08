@@ -19,12 +19,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.greenwallet.R
 
 @Composable
 fun RegisterSuccess(
-
+    navController: NavController
 ) {
+    fun navigateToLogin() {
+        navController.popBackStack()
+        navController.navigate(ScreensRoutes.LoginScreen.route)
+    }
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -54,7 +60,7 @@ fun RegisterSuccess(
         )
         Button(
             onClick = {
-                      /*TODO*/
+                navigateToLogin()
                       },
             shape = MaterialTheme.shapes.small,
             colors = androidx.compose.material3.ButtonDefaults.buttonColors(
@@ -75,5 +81,5 @@ fun RegisterSuccess(
 @Preview (showBackground = true)
 @Composable
 fun RegisterSuccessPrev() {
-    RegisterSuccess()
+    RegisterSuccess(rememberNavController())
 }
