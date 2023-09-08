@@ -1,4 +1,4 @@
-package com.example.greenwallet.screens
+package com.example.greenwallet.navigation
 
 sealed class ScreensRoutes(val route: String){
     object SplashScreen: ScreensRoutes(route = "splash_screen")

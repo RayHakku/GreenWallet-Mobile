@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.greenwallet.screens.SetupNavGraph
+import com.example.greenwallet.navigation.SetupNavGraph
 import com.example.greenwallet.ui.theme.GreenWalletTheme
 
 class MainActivity : ComponentActivity() {

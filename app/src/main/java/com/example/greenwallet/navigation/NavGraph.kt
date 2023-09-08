@@ -1,9 +1,14 @@
-package com.example.greenwallet.screens
+package com.example.greenwallet.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.greenwallet.screens.GetStarted
+import com.example.greenwallet.screens.LoginScreen
+import com.example.greenwallet.screens.RegisterScreen
+import com.example.greenwallet.screens.RegisterSuccess
+import com.example.greenwallet.screens.SplashScreenNav
 
 @Composable
 fun SetupNavGraph(
