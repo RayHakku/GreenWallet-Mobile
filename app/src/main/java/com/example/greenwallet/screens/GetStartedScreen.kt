@@ -15,14 +15,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.greenwallet.R
 
-@Preview
+
+
 @Composable
-fun GetStarted( modifier: Modifier = Modifier) {
+fun GetStarted(
+    modifier: Modifier = Modifier,
+    navController: NavController
+) {
     Column (
         modifier = modifier
             .fillMaxSize()
@@ -56,8 +64,8 @@ fun GetStarted( modifier: Modifier = Modifier) {
                     lineHeight = 5.sp,
                     fontSize = 32.sp,
                     color = Color.Black,
-                    fontStyle = androidx.compose.ui.text.font.FontStyle.Normal,
-                    fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                    fontStyle = FontStyle.Normal,
+                    fontWeight = FontWeight.Bold,
                     modifier = Modifier
                         .padding(bottom = 10.dp , top = 15.dp),
                 )
@@ -74,7 +82,9 @@ fun GetStarted( modifier: Modifier = Modifier) {
 
                     )
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                        navController.navigate(ScreensRoutes.RegisterScreen.route)
+                    },
                     shape = MaterialTheme.shapes.small,
                     modifier = Modifier
                         .fillMaxWidth(0.6f)
@@ -87,7 +97,8 @@ fun GetStarted( modifier: Modifier = Modifier) {
 
                 ) {
                     Text(
-                        text = "Criar Conta"
+                        text = "Criar Conta",
+                        fontWeight = FontWeight.Bold,
                     )
                 }
                 Button(
@@ -105,9 +116,16 @@ fun GetStarted( modifier: Modifier = Modifier) {
                 ) {
                     Text(
                         text = "Entrar",
+                        fontWeight = FontWeight.Bold,
                     )
                 }
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun GetStartedPrev() {
+    GetStarted(navController = rememberNavController())
 }

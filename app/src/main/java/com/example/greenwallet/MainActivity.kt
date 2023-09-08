@@ -11,7 +11,7 @@ import com.example.greenwallet.screens.SetupNavGraph
 import com.example.greenwallet.ui.theme.GreenWalletTheme
 
 class MainActivity : ComponentActivity() {
-    lateinit var navController: NavHostController
+    private lateinit var navController: NavHostController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
