@@ -2,7 +2,10 @@ package com.example.greenwallet.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -14,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -97,4 +101,53 @@ fun PasswordTextField(
             cursorColor = Color.hsl(104F, 0.62F, 0.51F, 1f),
         )
     )
+}
+
+@Composable
+fun SecondaryButtonMedium(
+    value: String, onClick: () -> Unit
+){
+    Button(
+        onClick = {
+            onClick.invoke()
+        },
+
+        shape = MaterialTheme.shapes.small,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color.hsl(104F, 0.62F, 0.51F, 0.1f),
+            contentColor = Color.hsl(104F, 0.62F, 0.51F, 1f),
+        ),
+        modifier = Modifier
+            .padding(top = 5.dp)
+            .fillMaxWidth(0.5f),
+    ){
+        Text(
+            text = value,
+            fontWeight = FontWeight.Bold,
+        )
+    }
+}
+
+@Composable
+fun MainButtonMedium(
+    value: String, onClick: () -> Unit
+) {
+    Button(
+        onClick = {
+            onClick.invoke()
+        },
+        shape = MaterialTheme.shapes.small,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color.hsl(104F, 0.62F, 0.51F, 1f),
+            contentColor = Color.White,
+        ),
+        modifier = Modifier
+            .padding(bottom = 5.dp)
+            .fillMaxWidth(0.5f)
+    ) {
+        Text(
+            text = value,
+            fontWeight = FontWeight.Bold,
+        )
+    }
 }

@@ -7,4 +7,5 @@ data class RegisterState (
     val password: String = "",
     val confirmPassword: String = "",
     val cpf: Int = 0,
+    val userTerms: Boolean = false,
 )

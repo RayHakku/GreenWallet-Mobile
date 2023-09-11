@@ -38,6 +38,18 @@ class RegisterViewModel : ViewModel() {
                     cpf = event.cpf
                 )
             }
+            is UIEvent.UserTermsChange -> {
+                registerState.value = registerState.value.copy(
+                    userTerms = event.userTerms
+                )
+            }
+            is UIEvent.RegisterButtonClick -> {
+                register()
+            }
         }
+    }
+
+    private fun register() {
+        TODO("Not yet implemented")
     }
 }

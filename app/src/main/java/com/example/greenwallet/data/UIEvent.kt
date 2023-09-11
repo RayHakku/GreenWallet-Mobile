@@ -8,4 +8,7 @@ sealed class UIEvent{
     data class PasswordChange(val password: String): UIEvent()
     data class ConfirmPasswordChange(val confirmPassword: String): UIEvent()
     data class CpfChange(val cpf: Int): UIEvent()
+    data class UserTermsChange(val userTerms: Boolean): UIEvent()
+
+    object RegisterButtonClick: UIEvent()
 }
