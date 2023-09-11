@@ -10,18 +10,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -30,18 +25,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.greenwallet.R
+import com.example.greenwallet.components.MainTextFieldComponent
+import com.example.greenwallet.components.PasswordTextField
 import com.example.greenwallet.navigation.ScreensRoutes
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,12 +42,7 @@ import com.example.greenwallet.navigation.ScreensRoutes
 fun RegisterScreen(
     navController: NavController
 ) {
-    var firstName by remember { mutableStateOf("") }
-    var lastName by remember { mutableStateOf("") }
-    var cpf by remember { mutableStateOf("") }
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-    var confirmPassword by remember { mutableStateOf("") }
+
     var userTerms by remember { mutableStateOf(false) }
 
 
@@ -111,184 +99,58 @@ fun RegisterScreen(
                 modifier = Modifier
                     .padding(start = 5.dp, top = 15.dp, bottom = 2.dp)
             )
-            TextField(
-                value = firstName,
-                onValueChange = { firstName = it },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(53.dp),
-                shape = MaterialTheme.shapes.medium,
-                placeholder = {
-                    Text(
-                        text = "Digite seu primeiro nome",
-                    )
-                },
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.hsl(104f, 0.62f, 0.51f, 0.4f),
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                    placeholderColor = Color.hsl(0F, 0F, 0F, 0.3f),
-                    cursorColor = Color.hsl(104F, 0.62F, 0.51F, 1f),
-                ),
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
-                singleLine = true,
+            MainTextFieldComponent(
+                placeholderValue = "Digite seu primeiro nome", onTextSelected = {
+
+                }
             )
             Text(
                 text = "Sobrenome",
                 modifier = Modifier
                     .padding(start = 5.dp,bottom = 2.dp)
             )
-            TextField(
-                value = lastName,
-                onValueChange = { lastName = it },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(53.dp),
-                shape = MaterialTheme.shapes.medium,
-                placeholder = {
-                    Text(
-                        text = "Digite seu sobrenome",
-                    )
-                },
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.hsl(104f, 0.62f, 0.51f, 0.4f),
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                    placeholderColor = Color.hsl(0F, 0F, 0F, 0.3f),
-                    cursorColor = Color.hsl(104F, 0.62F, 0.51F, 1f),
-                ),
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
-                singleLine = true,
+            MainTextFieldComponent(
+                placeholderValue = "Digite seu sobrenome", onTextSelected = {
 
+                }
             )
             Text(
                 text = "CPF",
                 modifier = Modifier
                     .padding(start = 5.dp,bottom = 2.dp)
             )
-            TextField(
-                value = cpf,
-                onValueChange = { cpf = it },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(53.dp),
-                shape = MaterialTheme.shapes.medium,
-                placeholder = {
-                    Text(
-                        text = "Digite seu CPF",
-                    )
-                },
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Number,
-                    imeAction = ImeAction.Next
-                ),
-                singleLine = true,
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.hsl(104f, 0.62f, 0.51f, 0.4f),
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                    placeholderColor = Color.hsl(0F, 0F, 0F, 0.3f),
-                    cursorColor = Color.hsl(104F, 0.62F, 0.51F, 1f),
-                )
-            )
+            MainTextFieldComponent(
+                placeholderValue = "Digite seu CPF",
+                onTextSelected = {
+            })
             Text(
                 text = "Email",
                 modifier = Modifier
                     .padding(start = 5.dp,bottom = 2.dp)
             )
-            TextField(
-                value = email,
-                onValueChange = { email = it },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(53.dp),
-                shape = MaterialTheme.shapes.medium,
-                placeholder = {
-                    Text(
-                        text = "Digite seu email",
-                    )
-                },
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Email,
-                    imeAction = ImeAction.Next
-                ),
-                singleLine = true,
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.hsl(104f, 0.62f, 0.51f, 0.4f),
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                    placeholderColor = Color.hsl(0F, 0F, 0F, 0.3f),
-                    cursorColor = Color.hsl(104F, 0.62F, 0.51F, 1f),
-                )
-            )
+            MainTextFieldComponent(
+                placeholderValue = "Digite seu email",
+                onTextSelected = {
+            })
             Text(
                 text = "Senha",
                 modifier = Modifier
                     .padding(start = 5.dp,bottom = 2.dp)
             )
-            TextField(
-                value = password,
-                onValueChange = { password = it },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(53.dp),
-                shape = MaterialTheme.shapes.medium,
-                placeholder = {
-                    Text(
-                        text = "Digite sua senha",
-                    )
-                },
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Password,
-                    imeAction = ImeAction.Next
-                ),
-                singleLine = true,
-                visualTransformation =  PasswordVisualTransformation(),
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.hsl(104f, 0.62f, 0.51f, 0.4f),
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                    placeholderColor = Color.hsl(0F, 0F, 0F, 0.3f),
-                    cursorColor = Color.hsl(104F, 0.62F, 0.51F, 1f),
-                )
+            PasswordTextField(
+                placeholderValue = "Digite sua senha",
+                onTextSelected = {
+            }
             )
             Text(
                 text = "Confirme a Senha",
                 modifier = Modifier
                     .padding(start = 5.dp,bottom = 2.dp)
             )
-            val localFocusManager = LocalFocusManager.current
-            TextField(
-                value = confirmPassword,
-                onValueChange = { confirmPassword = it },
-                modifier = Modifier
-                    .padding(bottom = 20.dp)
-                    .fillMaxWidth()
-                    .height(53.dp),
-                shape = MaterialTheme.shapes.medium,
-                placeholder = {
-                    Text(
-                        text = "Confirme sua senha",
-                    )
-                },
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Password,
-                    imeAction = ImeAction.Done
-                ),
-                keyboardActions = KeyboardActions(
-                    onDone = {
-                        localFocusManager.clearFocus()
-                    }
-                ),
-                singleLine = true,
-                visualTransformation =  PasswordVisualTransformation(),
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.hsl(104f, 0.62f, 0.51f, 0.4f),
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                    placeholderColor = Color.hsl(0F, 0F, 0F, 0.3f),
-                    cursorColor = Color.hsl(104F, 0.62F, 0.51F, 1f),
-                )
+            PasswordTextField(
+                placeholderValue = "Confirme sua senha",
+                onTextSelected = {
+            }
             )
             Row (
                 modifier = Modifier
