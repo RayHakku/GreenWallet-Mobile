@@ -29,6 +29,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.greenwallet.R
+import com.example.greenwallet.components.CPFTextFieldComponent
 import com.example.greenwallet.components.MainButtonMedium
 import com.example.greenwallet.components.MainTextFieldComponent
 import com.example.greenwallet.components.PasswordTextField
@@ -67,7 +68,7 @@ fun RegisterScreen(
     ) {
         Column(
             modifier = Modifier
-                .padding(20.dp)
+                .padding(horizontal = 20.dp)
                 .fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.Start,
@@ -76,7 +77,7 @@ fun RegisterScreen(
                 painter = painterResource(id = R.drawable.baseline_arrow_back_ios_24),
                 contentDescription = "Arrow Back",
                 modifier = Modifier
-                    .padding(start = 15.dp)
+                    //.padding(start = 15.dp)
                     .clickable {
                         navigateBack()
                     }
@@ -86,76 +87,76 @@ fun RegisterScreen(
                 fontSize = 25.sp,
                 fontWeight = FontWeight.Medium,
                 modifier = Modifier
-                    .padding(top = 20.dp, start = 15.dp)
+                    .padding(top = 10.dp, start = 15.dp)
             )
             Text(
                 text = "Lorem ipsum dolor sit amet.",
                 fontSize = 14.sp,
                 color = Color.hsl(0F, 0F, 0F, 0.45f),
                 modifier = Modifier
-                    .padding(top = 5.dp, start = 20.dp, bottom = 15.dp)
+                    .padding(top = 5.dp, start = 20.dp, bottom = 5.dp)
             )
-            Text(
-                text = "Primeiro Nome",
-                modifier = Modifier
-                    .padding(start = 5.dp, top = 15.dp, bottom = 2.dp)
-            )
+
             MainTextFieldComponent(
-                placeholderValue = "Digite seu primeiro nome", onTextSelected = {
-                    registerViewModel.onEvent(UIEvent.FirtsNameChange(it))
-                }
+                placeholderValue = "Digite seu primeiro nome",
+                onTextSelected = {
+                    registerViewModel.onEvent(UIEvent.FirstsNameChange(it)
+                    )
+                },
+                errorStatus = registerViewModel.registerState.value.firstNameError,
+                errorMessage = registerViewModel.registerState.value.firstNameErrorMessage,
+                labelValue = "Primeiro Nome"
             )
-            Text(
-                text = "Sobrenome",
-                modifier = Modifier
-                    .padding(start = 5.dp, bottom = 2.dp)
-            )
+
             MainTextFieldComponent(
-                placeholderValue = "Digite seu sobrenome", onTextSelected = {
-                    registerViewModel.onEvent(UIEvent.LastNameChange(it))
-                }
+                placeholderValue = "Digite seu sobrenome",
+                onTextSelected = {
+                    registerViewModel.onEvent(UIEvent.LastNameChange(it)
+                    )
+                },
+                errorStatus = registerViewModel.registerState.value.lastNameError,
+                errorMessage = registerViewModel.registerState.value.lastNameErrorMessage,
+                labelValue = "Sobrenome"
             )
-            Text(
-                text = "CPF",
-                modifier = Modifier
-                    .padding(start = 5.dp, bottom = 2.dp)
-            )
-            MainTextFieldComponent(
+            CPFTextFieldComponent(
                 placeholderValue = "Digite seu CPF",
                 onTextSelected = {
-                    registerViewModel.onEvent(UIEvent.CpfChange(it.toInt()))
-                })
-            Text(
-                text = "Email",
-                modifier = Modifier
-                    .padding(start = 5.dp, bottom = 2.dp)
+                    registerViewModel.onEvent(UIEvent.CpfChange(it)
+                    )
+                },
+                errorStatus = registerViewModel.registerState.value.cpfError,
+                errorMessage = registerViewModel.registerState.value.cpfErrorMessage,
+                labelValue = "CPF"
             )
+
             MainTextFieldComponent(
                 placeholderValue = "Digite seu email",
                 onTextSelected = {
                     registerViewModel.onEvent(UIEvent.EmailChange(it))
-                })
-            Text(
-                text = "Senha",
-                modifier = Modifier
-                    .padding(start = 5.dp, bottom = 2.dp)
+                },
+                errorStatus = registerViewModel.registerState.value.emailError,
+                errorMessage = registerViewModel.registerState.value.emailErrorMessage,
+                labelValue = "Email"
             )
             PasswordTextField(
                 placeholderValue = "Digite sua senha",
                 onTextSelected = {
-                    registerViewModel.onEvent(UIEvent.PasswordChange(it))
-                }
-            )
-            Text(
-                text = "Confirme a Senha",
-                modifier = Modifier
-                    .padding(start = 5.dp, bottom = 2.dp)
+                    registerViewModel.onEvent(UIEvent.PasswordChange(it)
+                    )
+                },
+                errorStatus = registerViewModel.registerState.value.passwordError,
+                errorMessage = registerViewModel.registerState.value.passwordErrorMessage,
+                labelValue = "Senha"
             )
             PasswordTextField(
                 placeholderValue = "Confirme sua senha",
                 onTextSelected = {
-                    registerViewModel.onEvent(UIEvent.ConfirmPasswordChange(it))
-                }
+                    registerViewModel.onEvent(UIEvent.ConfirmPasswordChange(it)
+                    )
+                },
+                errorStatus = registerViewModel.registerState.value.confirmPasswordError,
+                errorMessage = registerViewModel.registerState.value.confirmPasswordErrorMessage,
+                labelValue = "Confirme a Senha"
             )
             Row(
                 modifier = Modifier
@@ -174,7 +175,8 @@ fun RegisterScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 15.dp),
+                   // .padding(top = 5.dp)
+                        ,
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             )
@@ -183,7 +185,7 @@ fun RegisterScreen(
                     value = "Criar conta",
                     onClick = {
                     registerViewModel.onEvent(UIEvent.RegisterButtonClick)
-                    navigateToRegisterSuccess()
+                    //navigateToRegisterSuccess()
                     }
                 )
                 Text(

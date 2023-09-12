@@ -1,15 +1,14 @@
 package com.example.greenwallet.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -28,6 +27,9 @@ import androidx.compose.ui.unit.dp
 fun MainTextFieldComponent(
     placeholderValue:String,
     onTextSelected: (String) -> Unit,
+    errorStatus: Boolean,
+    errorMessage: String,
+    labelValue: String,
 ) {
     val textValue = remember {
         mutableStateOf("")
@@ -35,7 +37,7 @@ fun MainTextFieldComponent(
 
     val localFocusManager = LocalFocusManager.current
 
-    TextField(
+    OutlinedTextField(
         value = textValue.value ,
         onValueChange = {
             textValue.value = it
@@ -43,11 +45,16 @@ fun MainTextFieldComponent(
                         },
         modifier = Modifier
             .fillMaxWidth()
-            .height(53.dp),
+            ,
         shape = MaterialTheme.shapes.medium,
         placeholder = {
             Text(
                 text = placeholderValue,
+            )
+        },
+        label = {
+            Text(
+                text = labelValue,
             )
         },
         colors = TextFieldDefaults.textFieldColors(
@@ -56,9 +63,21 @@ fun MainTextFieldComponent(
             unfocusedIndicatorColor = Color.Transparent,
             placeholderColor = Color.hsl(0F, 0F, 0F, 0.3f),
             cursorColor = Color.hsl(104F, 0.62F, 0.51F, 1f),
+            focusedLabelColor = Color.Black,
         ),
-        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+        keyboardOptions = KeyboardOptions(
+            imeAction = ImeAction.Next
+        ),
         singleLine = true,
+        supportingText = {
+            if (!errorStatus) {
+                Text(
+                    text = errorMessage,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
+        },
+        isError = !errorStatus,
     )
 }
 
@@ -67,6 +86,9 @@ fun MainTextFieldComponent(
 fun PasswordTextField(
     placeholderValue: String,
     onTextSelected: (String) -> Unit,
+    errorStatus: Boolean,
+    errorMessage: String,
+    labelValue:String,
 ) {
 
     var passwordValue = remember {
@@ -75,13 +97,21 @@ fun PasswordTextField(
 
     val localFocusManager = LocalFocusManager.current
 
-    TextField(
+    OutlinedTextField(
         value = passwordValue.value,
-        onValueChange = { passwordValue.value = it },
+        onValueChange = { passwordValue.value = it
+            onTextSelected(it)
+                        },
         modifier = Modifier
             .fillMaxWidth()
-            .height(53.dp),
+            ,
         shape = MaterialTheme.shapes.medium,
+        label = {
+            Text(
+                text = labelValue,
+                modifier = Modifier
+            )
+        },
         placeholder = {
             Text(
                 text = placeholderValue,
@@ -99,7 +129,17 @@ fun PasswordTextField(
             unfocusedIndicatorColor = Color.Transparent,
             placeholderColor = Color.hsl(0F, 0F, 0F, 0.3f),
             cursorColor = Color.hsl(104F, 0.62F, 0.51F, 1f),
-        )
+            focusedLabelColor = Color.Black,
+        ),
+        supportingText = {
+            if (!errorStatus) {
+                Text(
+                    text = errorMessage,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
+        },
+        isError = !errorStatus,
     )
 }
 
@@ -150,4 +190,65 @@ fun MainButtonMedium(
             fontWeight = FontWeight.Bold,
         )
     }
+
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun CPFTextFieldComponent(
+    placeholderValue:String,
+    onTextSelected: (String) -> Unit,
+    errorStatus: Boolean,
+    errorMessage: String,
+    labelValue: String,
+) {
+    val textValue = remember {
+        mutableStateOf("")
+    }
+
+    val localFocusManager = LocalFocusManager.current
+
+    OutlinedTextField(
+        value = textValue.value ,
+        onValueChange = {
+            textValue.value = it
+            onTextSelected(it)
+        },
+        modifier = Modifier
+            .fillMaxWidth()
+        ,
+        label = {
+            Text(
+                text = labelValue,
+            )
+        },
+        shape = MaterialTheme.shapes.medium,
+        placeholder = {
+            Text(
+                text = placeholderValue,
+            )
+        },
+        colors = TextFieldDefaults.textFieldColors(
+            containerColor = Color.hsl(104f, 0.62f, 0.51f, 0.4f),
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            placeholderColor = Color.hsl(0F, 0F, 0F, 0.3f),
+            cursorColor = Color.hsl(104F, 0.62F, 0.51F, 1f),
+            focusedLabelColor = Color.Black,
+        ),
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Number,
+            imeAction = ImeAction.Next
+        ),
+        singleLine = true,
+        supportingText = {
+            if (!errorStatus) {
+                Text(
+                    text = errorMessage,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
+        },
+        isError = !errorStatus,
+    )
 }
