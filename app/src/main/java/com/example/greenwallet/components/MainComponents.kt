@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -250,5 +251,19 @@ fun CPFTextFieldComponent(
             }
         },
         isError = !errorStatus,
+    )
+}
+
+@Composable
+fun CheckBoxMainComponent(onCheckedChange: (Boolean) -> Unit) {
+    val checkedState = remember {
+        mutableStateOf(false)
+    }
+    Checkbox(
+        checked = checkedState.value ,
+        onCheckedChange = {
+            checkedState.value = !checkedState.value
+            onCheckedChange.invoke(it)
+        }
     )
 }

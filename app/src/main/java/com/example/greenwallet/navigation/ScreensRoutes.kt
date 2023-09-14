@@ -7,3 +7,5 @@ sealed class ScreensRoutes(val route: String){
     object RegisterSuccessScreen: ScreensRoutes(route = "register_success_screen")
     object LoginScreen: ScreensRoutes(route = "login_screen")
 }
+
+

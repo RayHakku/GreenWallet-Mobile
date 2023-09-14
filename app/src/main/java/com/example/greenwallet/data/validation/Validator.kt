@@ -106,6 +106,20 @@ object Validator {
         }
     }
 
+    fun validateUserTerms(userTerms: Boolean): ValidationRes {
+        return if (!userTerms) {
+            ValidationRes(
+                isValid = false,
+                message = "Aceite os termos de uso"
+            )
+        } else {
+            ValidationRes(
+                isValid = true,
+                message = ""
+            )
+        }
+    }
+
 }
 
 data class ValidationRes(

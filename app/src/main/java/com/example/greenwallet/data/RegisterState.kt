@@ -7,7 +7,7 @@ data class RegisterState (
     val password: String = "",
     val confirmPassword: String = "",
     val cpf: String = "",
-    val userTerms: Boolean = false,
+    //val userTerms: Boolean = false,
 
     val firstNameError: Boolean = true,
     val lastNameError: Boolean = true,
@@ -15,6 +15,7 @@ data class RegisterState (
     val passwordError: Boolean = true,
     val confirmPasswordError: Boolean = true,
     val cpfError: Boolean = true,
+    val userTermsError: Boolean = true,
 
     val firstNameErrorMessage: String = "",
     val lastNameErrorMessage: String = "",
@@ -22,5 +23,6 @@ data class RegisterState (
     val passwordErrorMessage: String = "",
     val confirmPasswordErrorMessage: String = "",
     val cpfErrorMessage: String = "",
+    val userTermsErrorMessage: String = "",
 
 )

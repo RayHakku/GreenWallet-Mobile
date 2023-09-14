@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,6 +29,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.greenwallet.R
 import com.example.greenwallet.components.CPFTextFieldComponent
+import com.example.greenwallet.components.CheckBoxMainComponent
 import com.example.greenwallet.components.MainButtonMedium
 import com.example.greenwallet.components.MainTextFieldComponent
 import com.example.greenwallet.components.PasswordTextField
@@ -44,14 +44,6 @@ fun RegisterScreen(
     navController: NavController,
     registerViewModel: RegisterViewModel = viewModel(),
 ) {
-
-    var userTerms by remember { mutableStateOf(false) }
-
-
-    fun navigateToRegisterSuccess() {
-        navController.popBackStack()
-        navController.navigate(ScreensRoutes.RegisterSuccessScreen.route)
-    }
 
     fun navigateToLogin() {
         navController.popBackStack()
@@ -164,9 +156,10 @@ fun RegisterScreen(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start
             ) {
-                Checkbox(
-                    checked = userTerms,
-                    onCheckedChange = { userTerms = it },
+                CheckBoxMainComponent(
+                    onCheckedChange = {
+                        registerViewModel.onEvent(UIEvent.UserTermsChange(it))
+                    }
                 )
                 Text(
                     text = "Eu aceito os termos de uso"
@@ -175,7 +168,6 @@ fun RegisterScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                   // .padding(top = 5.dp)
                         ,
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
