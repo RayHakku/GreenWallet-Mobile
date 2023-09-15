@@ -1,13 +1,25 @@
-package com.example.greenwallet.data
+package com.example.greenwallet.data.viewmodels
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
+import com.example.greenwallet.data.UIEvent
+import com.example.greenwallet.data.classes.User
+import com.example.greenwallet.data.states.RegisterState
 import com.example.greenwallet.data.validation.Validator
+import com.example.greenwallet.navigation.ScreensRoutes
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
-class RegisterViewModel : ViewModel() {
+class RegisterViewModel (
+    private val navController: NavController,
+) : ViewModel() {
+
     internal var registerState = mutableStateOf(RegisterState())
-
+    private val db = Firebase.database
+    private val usersRef: DatabaseReference = db.getReference("users")
     fun onEvent (event: UIEvent){
         when(event){
             is UIEvent.FirstsNameChange -> {
@@ -120,7 +132,18 @@ class RegisterViewModel : ViewModel() {
             .createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener{
                 if(it.isSuccessful){
-                    //TODO: Navigate to Success Screen
+                    val user = User(
+                        uid = it.result?.user?.uid ?: "",
+                        firstName = registerState.value.firstName,
+                        lastName = registerState.value.lastName,
+                        email = email,
+                        cpf = registerState.value.cpf
+                    )
+
+                    val userId = usersRef.push().key ?: ""
+                    usersRef.child(userId).setValue(user)
+
+                    navController.navigate(ScreensRoutes.RegisterSuccessScreen.route)
                 }
             }
             .addOnFailureListener{

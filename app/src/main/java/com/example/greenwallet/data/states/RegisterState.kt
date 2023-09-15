@@ -1,4 +1,4 @@
-package com.example.greenwallet.data
+package com.example.greenwallet.data.states
 
 data class RegisterState (
     val firstName: String = "",
@@ -7,7 +7,6 @@ data class RegisterState (
     val password: String = "",
     val confirmPassword: String = "",
     val cpf: String = "",
-    //val userTerms: Boolean = false,
 
     val firstNameError: Boolean = true,
     val lastNameError: Boolean = true,
@@ -26,3 +25,4 @@ data class RegisterState (
     val userTermsErrorMessage: String = "",
 
 )
+

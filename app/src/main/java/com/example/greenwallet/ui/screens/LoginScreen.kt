@@ -1,4 +1,4 @@
-package com.example.greenwallet.screens
+package com.example.greenwallet.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

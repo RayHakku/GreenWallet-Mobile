@@ -1,4 +1,4 @@
-package com.example.greenwallet.screens
+package com.example.greenwallet.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -36,20 +36,15 @@ fun GetStarted(
             .fillMaxSize()
             .background(Color.hsl(104F, 1F, 0.9F, 1f))
             .padding(20.dp),
-        // verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     )
     {
         Image(
             painter = painterResource(id = R.drawable.wallet_cuate2),
             contentDescription = "Woman with a wallet",
-            modifier = Modifier
-                .padding(vertical = 40.dp)
         )
         Surface(
             modifier = Modifier
-                .padding(vertical = 50.dp)
-                //.fillMaxHeight(0.35f)
                 .fillMaxWidth(),
             shape = MaterialTheme.shapes.large,
         )
@@ -66,8 +61,6 @@ fun GetStarted(
                     color = Color.Black,
                     fontStyle = FontStyle.Normal,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier
-                        .padding(bottom = 10.dp , top = 15.dp),
                 )
                 Text(
                     text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -76,7 +69,6 @@ fun GetStarted(
                     color = Color.hsl(0F, 0F,0F,0.3f),
                     lineHeight = 18.sp,
                     modifier = Modifier
-                        .padding(bottom = 20.dp)
                         .fillMaxWidth(0.8f),
 
 
@@ -88,7 +80,7 @@ fun GetStarted(
                     shape = MaterialTheme.shapes.small,
                     modifier = Modifier
                         .fillMaxWidth(0.6f)
-                        .padding(bottom = 5.dp),
+                        ,
                     colors = androidx.compose.material3.ButtonDefaults.buttonColors(
                         containerColor = Color.hsl(104F, 0.62F, 0.51F, 1f),
                         contentColor = Color.White,
@@ -111,8 +103,7 @@ fun GetStarted(
                         contentColor = Color.hsl(104F, 0.62F, 0.51F, 1f),
                     ),
                     modifier = Modifier
-                        .fillMaxWidth(0.6f)
-                        .padding(top = 10.dp, bottom = 30.dp),
+                        .fillMaxWidth(0.6f),
                     border = androidx.compose.material3.ButtonDefaults.outlinedButtonBorder
 
                 ) {

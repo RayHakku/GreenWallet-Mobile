@@ -1,4 +1,4 @@
-package com.example.greenwallet.components
+package com.example.greenwallet.ui
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding

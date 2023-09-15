@@ -1,4 +1,4 @@
-package com.example.greenwallet.screens
+package com.example.greenwallet.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -12,10 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,13 +24,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.greenwallet.R
-import com.example.greenwallet.components.CPFTextFieldComponent
-import com.example.greenwallet.components.CheckBoxMainComponent
-import com.example.greenwallet.components.MainButtonMedium
-import com.example.greenwallet.components.MainTextFieldComponent
-import com.example.greenwallet.components.PasswordTextField
-import com.example.greenwallet.components.SecondaryButtonMedium
-import com.example.greenwallet.data.RegisterViewModel
+import com.example.greenwallet.ui.CPFTextFieldComponent
+import com.example.greenwallet.ui.CheckBoxMainComponent
+import com.example.greenwallet.ui.MainButtonMedium
+import com.example.greenwallet.ui.MainTextFieldComponent
+import com.example.greenwallet.ui.PasswordTextField
+import com.example.greenwallet.ui.SecondaryButtonMedium
+import com.example.greenwallet.data.viewmodels.RegisterViewModel
 import com.example.greenwallet.data.UIEvent
 import com.example.greenwallet.navigation.ScreensRoutes
 
@@ -177,7 +173,6 @@ fun RegisterScreen(
                     value = "Criar conta",
                     onClick = {
                     registerViewModel.onEvent(UIEvent.RegisterButtonClick)
-                    //navigateToRegisterSuccess()
                     }
                 )
                 Text(
