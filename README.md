@@ -40,4 +40,9 @@ ira ser permitido ao usuario adicionar e gerenciar sua renda e despesas, criar o
   5. Navigation Bar
   6. Gradle
   7. l18n internatinalization
-  8. L10n Localization 
+  8. L10n Localization
+  9. Retrofit 
+  10. Material Design
+
+## Sequence Diagram
+![Sequence Diagram of a Login Flow](GreenWalletLoginFlowDiagram.png)
