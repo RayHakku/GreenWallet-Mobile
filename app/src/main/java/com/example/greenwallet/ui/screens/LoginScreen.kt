@@ -1,4 +1,4 @@
-package com.example.greenwallet.screens
+package com.example.greenwallet.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -17,13 +17,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,21 +27,33 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.greenwallet.R
+import com.example.greenwallet.data.states.LoginState
+import com.example.greenwallet.data.viewmodels.LoginViewModel
+import com.example.greenwallet.data.viewmodels.ViewModelFactory
+import com.example.greenwallet.navigation.ScreensRoutes
+import com.example.greenwallet.ui.MainTextFieldComponent
+import com.example.greenwallet.ui.PasswordTextField
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
-    navController: NavController
+    navController: NavController,
+    loginViewModel: LoginViewModel = viewModel(
+        factory = ViewModelFactory(navController)
+    ),
 ) {
+
     fun navigateBack() {
         navController.navigate(ScreensRoutes.GetStartedScreen.route)
     }
-    var lembrarlogin by remember { mutableStateOf(false) }
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
+
+
+
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -82,57 +88,38 @@ fun LoginScreen(
                 .fillMaxWidth()
                 .padding(bottom = 5.dp)
         )
-        TextField(
-            value = email,
-            onValueChange = { email = it },
-            shape = MaterialTheme.shapes.medium,
-            singleLine = true,
-            placeholder = {
-                Text(
-                    text = "Insira seu email"
+        MainTextFieldComponent(
+            placeholderValue = "Digite seu email",
+            onTextSelected = {
+                loginViewModel.onEvent(
+                    LoginState.EmailChange(it)
                 )
-                          },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(70.dp)
-                .padding(bottom = 20.dp),
-            colors = TextFieldDefaults.textFieldColors(
-                containerColor = Color.hsl(104f, 0.62f, 0.51f, 0.4f),
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                placeholderColor = Color.hsl(0F, 0F, 0F, 0.3f),
-                cursorColor = Color.hsl(104F, 0.62F, 0.51F, 1f),
-                )
+            },
+            errorStatus = loginViewModel.loginDataState.value.emailLoginError,
+            errorMessage = loginViewModel.loginDataState.value.emailLoginErrorMessage,
+            labelValue ="Email",
         )
+
         Text(
-            text = "Password",
+            text = "Senha",
             fontSize = 16.sp,
             fontWeight = FontWeight.SemiBold,
             modifier = Modifier
                 .fillMaxWidth()
         )
-        TextField(
-            value = password,
-            onValueChange = { password = it },
-            shape = MaterialTheme.shapes.medium,
-            singleLine = true,
-            placeholder = {
-                Text(
-                    text = "Insira sua senha"
+
+        PasswordTextField(
+            placeholderValue = "Digite sua senha",
+            onTextSelected = {
+                loginViewModel.onEvent(
+                    LoginState.PasswordChange(it)
                 )
-                          },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(70.dp)
-                .padding(bottom = 20.dp),
-            colors = TextFieldDefaults.textFieldColors(
-                containerColor = Color.hsl(104f, 0.62f, 0.51f, 0.4f),
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                placeholderColor = Color.hsl(0F, 0F, 0F, 0.3f),
-                cursorColor = Color.hsl(104F, 0.62F, 0.51F, 1f),
-                )
+            },
+            errorStatus = loginViewModel.loginDataState.value.passwordLoginError,
+            errorMessage = loginViewModel.loginDataState.value.passwordLoginErrorMessage,
+            labelValue ="Senha"
         )
+
         Row (
             modifier = Modifier
                 .fillMaxWidth(),
@@ -140,8 +127,12 @@ fun LoginScreen(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Checkbox(
-                checked = lembrarlogin ,
-                onCheckedChange = { lembrarlogin = it}
+                checked = loginViewModel.loginDataState.value.rememberMe,
+                onCheckedChange = {
+                     loginViewModel.onEvent(
+                        LoginState.RememberMeChange(it)
+                    )
+                }
             )
             Text(
                 text = "Lembrar conta",
@@ -167,7 +158,9 @@ fun LoginScreen(
         ) {
             Button(
                 onClick = {
-                          /*TODO*/
+                    loginViewModel.onEvent(
+                        LoginState.LoginButtonClick
+                    )
                           },
                 shape = MaterialTheme.shapes.extraLarge,
                 colors = androidx.compose.material3.ButtonDefaults.buttonColors(

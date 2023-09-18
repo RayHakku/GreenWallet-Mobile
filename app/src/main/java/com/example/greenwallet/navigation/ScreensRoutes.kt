@@ -1,4 +1,4 @@
-package com.example.greenwallet.screens
+package com.example.greenwallet.navigation
 
 sealed class ScreensRoutes(val route: String){
     object SplashScreen: ScreensRoutes(route = "splash_screen")
@@ -6,4 +6,7 @@ sealed class ScreensRoutes(val route: String){
     object RegisterScreen: ScreensRoutes(route = "register_screen")
     object RegisterSuccessScreen: ScreensRoutes(route = "register_success_screen")
     object LoginScreen: ScreensRoutes(route = "login_screen")
+    object HomeScreen: ScreensRoutes(route = "home_screen/{userId}")
 }
+
+

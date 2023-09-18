@@ -1,4 +1,4 @@
-package com.example.greenwallet.screens
+package com.example.greenwallet.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.greenwallet.R
+import com.example.greenwallet.navigation.ScreensRoutes
 
 @Composable
 fun RegisterSuccess(
