@@ -4,7 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.example.greenwallet.ui.screens.GetStarted
+import com.example.greenwallet.ui.screens.HomeScreen
 import com.example.greenwallet.ui.screens.LoginScreen
 import com.example.greenwallet.ui.screens.RegisterScreen
 import com.example.greenwallet.ui.screens.RegisterSuccess
@@ -17,7 +19,7 @@ fun SetupNavGraph(
     NavHost(
         navController = navController,
         startDestination = ScreensRoutes.SplashScreen.route
-        ){
+        ) {
         composable(
             route = ScreensRoutes.SplashScreen.route
         ) {
@@ -42,6 +44,16 @@ fun SetupNavGraph(
             route = ScreensRoutes.LoginScreen.route
         ) {
             LoginScreen(navController)
+        }
+        composable(
+            route = ScreensRoutes.HomeScreen.route,
+            arguments = listOf(
+                navArgument("userId") {
+                    defaultValue = ""
+                }
+            )
+        ) {
+            HomeScreen(navController, it.arguments?.getString("userId") ?: "")
         }
     }
 }

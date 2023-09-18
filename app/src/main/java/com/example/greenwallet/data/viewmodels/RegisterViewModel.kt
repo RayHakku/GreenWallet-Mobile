@@ -13,6 +13,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
+
 class RegisterViewModel (
     private val navController: NavController,
 ) : ViewModel() {
@@ -26,42 +27,43 @@ class RegisterViewModel (
                 registerState.value = registerState.value.copy(
                     firstName = event.firstName
                 )
-                validateData()
+                validateFirstName()
             }
             is UIEvent.LastNameChange -> {
                 registerState.value = registerState.value.copy(
                     lastName = event.lastName
                 )
-                validateData()
+                validateLastName()
             }
             is UIEvent.EmailChange -> {
                 registerState.value = registerState.value.copy(
                     email = event.email
                 )
-                validateData()
+                validateEmail()
             }
             is UIEvent.PasswordChange -> {
                 registerState.value = registerState.value.copy(
                     password = event.password
                 )
-                validateData()
+                validatePassword()
             }
             is UIEvent.ConfirmPasswordChange -> {
                 registerState.value = registerState.value.copy(
                     confirmPassword = event.confirmPassword
                 )
-                validateData()
+                validateConfirmPassword()
             }
             is UIEvent.CpfChange -> {
                 registerState.value = registerState.value.copy(
                     cpf = event.cpf
                 )
-                validateData()
+                validateCPF()
             }
             is UIEvent.UserTermsChange -> {
                 registerState.value = registerState.value.copy(
                     userTermsError = event.userTerms
                 )
+                validateUserTerms()
             }
             is UIEvent.RegisterButtonClick -> {
                 register()
@@ -76,54 +78,6 @@ class RegisterViewModel (
                 password = registerState.value.password
             )
         }
-    }
-
-    private fun validateData(): Boolean {
-        val firstNameRes = Validator.validateFirstName(
-            firstName = registerState.value.firstName
-        )
-        val lastNameRes = Validator.validateLastName(
-            lastName = registerState.value.lastName
-        )
-        val emailRes = Validator.validateEmail(
-            email = registerState.value.email
-        )
-        val passwordRes = Validator.validatePassword(
-            password = registerState.value.password
-        )
-        val confirmPasswordRes = Validator.validateConfirmPassword(
-            password = registerState.value.password,
-            confirmPassword = registerState.value.confirmPassword
-        )
-        val cpfRes = Validator.validateCPF(
-            cpf = registerState.value.cpf
-        )
-
-        val userTermsRes = Validator.validateUserTerms(
-            userTerms = registerState.value.userTermsError
-        )
-
-        registerState.value = registerState.value.copy(
-            firstNameError = firstNameRes.isValid,
-            lastNameError = lastNameRes.isValid,
-            emailError = emailRes.isValid,
-            passwordError = passwordRes.isValid,
-            confirmPasswordError = confirmPasswordRes.isValid,
-            cpfError = cpfRes.isValid,
-            userTermsError = userTermsRes.isValid,
-            firstNameErrorMessage = firstNameRes.message,
-            lastNameErrorMessage = lastNameRes.message,
-            emailErrorMessage = emailRes.message,
-            passwordErrorMessage = passwordRes.message,
-            confirmPasswordErrorMessage = confirmPasswordRes.message,
-            cpfErrorMessage = cpfRes.message,
-            userTermsErrorMessage = userTermsRes.message
-        )
-
-        if (firstNameRes.isValid && lastNameRes.isValid && emailRes.isValid && passwordRes.isValid && confirmPasswordRes.isValid && cpfRes.isValid && userTermsRes.isValid) {
-            return true
-        }
-        return false
     }
 
     private fun createUser(email: String, password: String){
@@ -150,6 +104,95 @@ class RegisterViewModel (
 
             }
     }
+    private fun validateFirstName(): Boolean {
+        val firstNameRes = Validator.validateFirstName(
+            firstName = registerState.value.firstName
+        )
+        registerState.value = registerState.value.copy(
+            firstNameError = firstNameRes.isValid,
+            firstNameErrorMessage = firstNameRes.message
+        )
+        return firstNameRes.isValid
+    }
+
+    private fun validateLastName(): Boolean {
+        val lastNameRes = Validator.validateLastName(
+            lastName = registerState.value.lastName
+        )
+        registerState.value = registerState.value.copy(
+            lastNameError = lastNameRes.isValid,
+            lastNameErrorMessage = lastNameRes.message
+        )
+        return lastNameRes.isValid
+    }
+
+    private fun validateEmail(): Boolean {
+        val emailRes = Validator.validateEmail(
+            email = registerState.value.email
+        )
+        registerState.value = registerState.value.copy(
+            emailError = emailRes.isValid,
+            emailErrorMessage = emailRes.message
+        )
+        return emailRes.isValid
+    }
+
+    private fun validatePassword(): Boolean {
+        val passwordRes = Validator.validatePassword(
+            password = registerState.value.password
+        )
+        registerState.value = registerState.value.copy(
+            passwordError = passwordRes.isValid,
+            passwordErrorMessage = passwordRes.message
+        )
+        return passwordRes.isValid
+    }
+
+    private fun validateConfirmPassword(): Boolean {
+        val confirmPasswordRes = Validator.validateConfirmPassword(
+            password = registerState.value.password,
+            confirmPassword = registerState.value.confirmPassword
+        )
+        registerState.value = registerState.value.copy(
+            confirmPasswordError = confirmPasswordRes.isValid,
+            confirmPasswordErrorMessage = confirmPasswordRes.message
+        )
+        return confirmPasswordRes.isValid
+    }
+
+    private fun validateCPF(): Boolean {
+        val cpfRes = Validator.validateCPF(
+            cpf = registerState.value.cpf
+        )
+        registerState.value = registerState.value.copy(
+            cpfError = cpfRes.isValid,
+            cpfErrorMessage = cpfRes.message
+        )
+        return cpfRes.isValid
+    }
+
+    private fun validateUserTerms(): Boolean {
+        val userTermsRes = Validator.validateUserTerms(
+            userTerms = registerState.value.userTermsError
+        )
+        registerState.value = registerState.value.copy(
+            userTermsError = userTermsRes.isValid,
+            userTermsErrorMessage = userTermsRes.message
+        )
+        return userTermsRes.isValid
+    }
+
+    private fun validateData(): Boolean{
+        return validateFirstName()
+                && validateLastName()
+                && validateEmail()
+                && validatePassword()
+                && validateConfirmPassword()
+                && validateCPF()
+                && validateUserTerms()
+    }
 }
+
+
 
 

@@ -32,13 +32,16 @@ import com.example.greenwallet.ui.PasswordTextField
 import com.example.greenwallet.ui.SecondaryButtonMedium
 import com.example.greenwallet.data.viewmodels.RegisterViewModel
 import com.example.greenwallet.data.UIEvent
+import com.example.greenwallet.data.viewmodels.ViewModelFactory
 import com.example.greenwallet.navigation.ScreensRoutes
 
 
 @Composable
 fun RegisterScreen(
     navController: NavController,
-    registerViewModel: RegisterViewModel = viewModel(),
+    registerViewModel: RegisterViewModel = viewModel(
+        factory = ViewModelFactory(navController)
+    ),
 ) {
 
     fun navigateToLogin() {
