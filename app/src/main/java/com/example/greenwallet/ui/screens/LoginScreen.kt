@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -21,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -31,20 +31,21 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.greenwallet.R
+import com.example.greenwallet.data.classes.SharedPreferencesProvider
+import com.example.greenwallet.data.classes.ViewModelFactory
 import com.example.greenwallet.data.states.LoginState
 import com.example.greenwallet.data.viewmodels.LoginViewModel
-import com.example.greenwallet.data.viewmodels.ViewModelFactory
 import com.example.greenwallet.navigation.ScreensRoutes
 import com.example.greenwallet.ui.MainTextFieldComponent
 import com.example.greenwallet.ui.PasswordTextField
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
     navController: NavController,
+    sharedPreferencesProvider: SharedPreferencesProvider,
     loginViewModel: LoginViewModel = viewModel(
-        factory = ViewModelFactory(navController)
+        factory = ViewModelFactory(navController, sharedPreferencesProvider)
     ),
 ) {
 
@@ -52,6 +53,7 @@ fun LoginScreen(
         navController.navigate(ScreensRoutes.GetStartedScreen.route)
     }
 
+    loginViewModel.autoLogin()
 
 
     Column (
@@ -156,6 +158,11 @@ fun LoginScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
+
+            Text(
+                text = loginViewModel.loginDataState.value.loginInvalidMessage,
+            )
+
             Button(
                 onClick = {
                     loginViewModel.onEvent(
@@ -184,5 +191,5 @@ fun LoginScreen(
 @Preview (showBackground = true)
 @Composable
 fun LoginPreview() {
-    LoginScreen(rememberNavController())
+    LoginScreen(rememberNavController(), SharedPreferencesProvider(LocalContext.current))
 }

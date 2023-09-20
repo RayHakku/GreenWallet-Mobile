@@ -24,7 +24,6 @@ data class LoginDataState(
     var emailLoginError: Boolean = true,
     var emailLoginErrorMessage: String = "",
     val passwordLoginError: Boolean = true,
-    val passwordLoginErrorMessage: String = ""
-
-
+    val passwordLoginErrorMessage: String = "",
+    var loginInvalidMessage: String = "",
     )

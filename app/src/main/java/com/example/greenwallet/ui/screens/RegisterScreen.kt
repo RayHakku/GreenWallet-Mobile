@@ -32,7 +32,7 @@ import com.example.greenwallet.ui.PasswordTextField
 import com.example.greenwallet.ui.SecondaryButtonMedium
 import com.example.greenwallet.data.viewmodels.RegisterViewModel
 import com.example.greenwallet.data.UIEvent
-import com.example.greenwallet.data.viewmodels.ViewModelFactory
+import com.example.greenwallet.data.classes.ViewModelFactory
 import com.example.greenwallet.navigation.ScreensRoutes
 
 
@@ -40,7 +40,7 @@ import com.example.greenwallet.navigation.ScreensRoutes
 fun RegisterScreen(
     navController: NavController,
     registerViewModel: RegisterViewModel = viewModel(
-        factory = ViewModelFactory(navController)
+        factory = ViewModelFactory(navController, null)
     ),
 ) {
 

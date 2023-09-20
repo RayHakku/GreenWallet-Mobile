@@ -4,18 +4,23 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
+import com.example.greenwallet.data.classes.SharedPreferencesProvider
 import com.example.greenwallet.data.states.LoginDataState
 import com.example.greenwallet.data.states.LoginState
 import com.example.greenwallet.data.validation.Validator
 import com.google.firebase.auth.FirebaseAuth
 
-class LoginViewModel (
-   private val navController: NavController
+
+class LoginViewModel(
+    private val navController: NavController,
+    private val sharedPreferencesProvider: SharedPreferencesProvider?
 ) : ViewModel()
  {
     private val auth = FirebaseAuth.getInstance()
-    private val loginState = MutableLiveData<LoginState>()
+    val loginState = MutableLiveData<LoginState>()
     val loginDataState = mutableStateOf(LoginDataState())
+
+
 
     fun onEvent(event: LoginState){
         when (event){
@@ -70,16 +75,20 @@ class LoginViewModel (
                     val userId = auth.currentUser?.uid.toString()
 
                     if (loginDataState.value.rememberMe){
-                        TODO()
+                        sharedPreferencesProvider?.saveBoolean("rememberMe", true)
+                        navController.navigate("home_screen/1")
+                    }else{
+                        sharedPreferencesProvider?.saveBoolean("rememberMe", false)
+                        navController.navigate("home_screen/$userId")
                     }
-                    navController.navigate("home_screen/$userId")
-
                 }
             }
             .addOnFailureListener{
-
-
-
+                print(it.message)
+                loginDataState.value = loginDataState.value.copy(
+                    loginInvalidMessage = it.message.toString()
+                )
+                print(loginState.value)
             }
     }
      private fun validateEmail(): Boolean{
@@ -107,4 +116,13 @@ class LoginViewModel (
      private fun validateLogin(): Boolean{
             return validateEmail() && validatePassword()
         }
+
+     fun autoLogin(){
+         val rememberMe = sharedPreferencesProvider?.getBoolean("rememberMe")
+         val userId = auth.currentUser?.uid.toString()
+         if(rememberMe == true){
+             navController.popBackStack()
+             navController.navigate("home_screen/$userId")
+         }
+     }
 }
