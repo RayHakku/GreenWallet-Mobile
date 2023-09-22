@@ -26,6 +26,8 @@ fun HomeScreen(navController: NavController, s: String) {
 
     val auth = FirebaseAuth.getInstance()
     val sharedPreferencesProvider = SharedPreferencesProvider(LocalContext.current)
+
+
     Box(
         modifier = Modifier
             .fillMaxSize(),
@@ -43,7 +45,9 @@ fun HomeScreen(navController: NavController, s: String) {
             ) {
                 Column {
                     Text(text = "Home")
-                    Text(text = s)
+                    Text(
+                        s
+                    )
                 }
             }
              MainButtonMedium(value = "Logout", onClick = ({

@@ -62,7 +62,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
-    implementation("androidx.navigation:navigation-compose:2.7.2")
+    implementation("androidx.navigation:navigation-compose:2.7.3")
 
     // Firebase
     implementation(platform("com.google.firebase:firebase-bom:32.2.3"))
@@ -71,6 +71,9 @@ dependencies {
 
     // Data Store
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    //Biometry
+    implementation("androidx.biometric:biometric:1.2.0-alpha05")
 
     // Other
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")

@@ -16,10 +16,9 @@ class LoginViewModel(
     private val sharedPreferencesProvider: SharedPreferencesProvider?
 ) : ViewModel()
  {
-    private val auth = FirebaseAuth.getInstance()
-    val loginState = MutableLiveData<LoginState>()
-    val loginDataState = mutableStateOf(LoginDataState())
-
+     private val auth = FirebaseAuth.getInstance()
+     val loginState = MutableLiveData<LoginState>()
+     val loginDataState = mutableStateOf(LoginDataState())
 
 
     fun onEvent(event: LoginState){
@@ -76,7 +75,7 @@ class LoginViewModel(
 
                     if (loginDataState.value.rememberMe){
                         sharedPreferencesProvider?.saveBoolean("rememberMe", true)
-                        navController.navigate("home_screen/1")
+                        navController.navigate("home_screen/$userId")
                     }else{
                         sharedPreferencesProvider?.saveBoolean("rememberMe", false)
                         navController.navigate("home_screen/$userId")
@@ -118,11 +117,25 @@ class LoginViewModel(
         }
 
      fun autoLogin(){
-         val rememberMe = sharedPreferencesProvider?.getBoolean("rememberMe")
          val userId = auth.currentUser?.uid.toString()
-         if(rememberMe == true){
-             navController.popBackStack()
-             navController.navigate("home_screen/$userId")
+         navController.popBackStack()
+         navController.navigate("home_screen/$userId")
+
+     }
+
+     fun canceledBioLogin(){
+         //will logout the current firebase user and return to login screen
+            auth.signOut()
+            navController.popBackStack()
+            navController.navigate("login_screen")
+     }
+
+     fun rememberMe(): Boolean{
+         val remeberMe = sharedPreferencesProvider?.getBoolean("rememberMe") ?: false
+         if (sharedPreferencesProvider?.getBoolean("rememberMe") == false && auth.currentUser != null){
+             auth.signOut()
+             return remeberMe
          }
+            return remeberMe
      }
 }
