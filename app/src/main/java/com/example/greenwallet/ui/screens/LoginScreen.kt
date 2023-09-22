@@ -1,5 +1,6 @@
 package com.example.greenwallet.ui.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -13,46 +14,80 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.greenwallet.R
+import com.example.greenwallet.data.Biometry
+import com.example.greenwallet.data.classes.SharedPreferencesProvider
+import com.example.greenwallet.data.classes.ViewModelFactory
 import com.example.greenwallet.data.states.LoginState
 import com.example.greenwallet.data.viewmodels.LoginViewModel
-import com.example.greenwallet.data.viewmodels.ViewModelFactory
 import com.example.greenwallet.navigation.ScreensRoutes
 import com.example.greenwallet.ui.MainTextFieldComponent
 import com.example.greenwallet.ui.PasswordTextField
+import com.google.firebase.auth.FirebaseAuth
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
     navController: NavController,
+    sharedPreferencesProvider: SharedPreferencesProvider,
     loginViewModel: LoginViewModel = viewModel(
-        factory = ViewModelFactory(navController)
+        factory = ViewModelFactory(navController, sharedPreferencesProvider)
     ),
 ) {
 
+    val auth =  FirebaseAuth.getInstance()
     fun navigateBack() {
         navController.navigate(ScreensRoutes.GetStartedScreen.route)
     }
+    val context = LocalContext.current
+    val checkedRememberMe = remember {
+        loginViewModel.rememberMe()
+    }
 
 
+    LaunchedEffect(true){
+        if (checkedRememberMe) {
+            println(auth.currentUser)
+            Biometry.authenticateBio(
+                activity = context as FragmentActivity,
+                title = "Login",
+                subtitle = "Faça login com sua biometria",
+                description = "Toque no sensor de biometria para fazer login",
+                negativeText = "Cancelar",
+                onSuccess = {
+                    loginViewModel.autoLogin()
+                },
+                onCancel = {
+                    loginViewModel.canceledBioLogin()
+                },
+                onError = {
+                        _, errorString ->
+
+                    Toast.makeText(context, errorString, Toast.LENGTH_SHORT).show()
+                }
+            )
+        }
+    }
 
     Column (
         modifier = Modifier
@@ -156,6 +191,11 @@ fun LoginScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
+
+            Text(
+                text = loginViewModel.loginDataState.value.loginInvalidMessage,
+            )
+
             Button(
                 onClick = {
                     loginViewModel.onEvent(
@@ -184,5 +224,5 @@ fun LoginScreen(
 @Preview (showBackground = true)
 @Composable
 fun LoginPreview() {
-    LoginScreen(rememberNavController())
+    LoginScreen(rememberNavController(), SharedPreferencesProvider(LocalContext.current))
 }

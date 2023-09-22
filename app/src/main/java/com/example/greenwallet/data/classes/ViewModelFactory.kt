@@ -1,10 +1,16 @@
-package com.example.greenwallet.data.viewmodels
+package com.example.greenwallet.data.classes
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
+import com.example.greenwallet.data.viewmodels.LoginViewModel
+import com.example.greenwallet.data.viewmodels.RegisterViewModel
 
-class ViewModelFactory(private val navController: NavController) :
+class ViewModelFactory(
+    private val navController: NavController,
+    private val sharedPreferencesProvider: SharedPreferencesProvider?
+
+) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
@@ -12,7 +18,7 @@ class ViewModelFactory(private val navController: NavController) :
             return RegisterViewModel(navController) as T
         } else if(modelClass.isAssignableFrom(LoginViewModel::class.java)){
             @Suppress("UNCHECKED_CAST")
-            return LoginViewModel(navController) as T
+            return LoginViewModel(navController,sharedPreferencesProvider) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

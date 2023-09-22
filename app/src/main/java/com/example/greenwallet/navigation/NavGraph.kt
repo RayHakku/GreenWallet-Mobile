@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.greenwallet.data.classes.SharedPreferencesProvider
 import com.example.greenwallet.ui.screens.GetStarted
 import com.example.greenwallet.ui.screens.HomeScreen
 import com.example.greenwallet.ui.screens.LoginScreen
@@ -15,11 +16,15 @@ import com.example.greenwallet.ui.screens.SplashScreenNav
 @Composable
 fun SetupNavGraph(
     navController: NavHostController
+
 ) {
     NavHost(
         navController = navController,
-        startDestination = ScreensRoutes.SplashScreen.route
+        startDestination = ScreensRoutes.SplashScreen.route,
+
+
         ) {
+        val sharedPreferencesProvider = SharedPreferencesProvider(navController.context)
         composable(
             route = ScreensRoutes.SplashScreen.route
         ) {
@@ -43,7 +48,8 @@ fun SetupNavGraph(
         composable(
             route = ScreensRoutes.LoginScreen.route
         ) {
-            LoginScreen(navController)
+
+            LoginScreen(navController, sharedPreferencesProvider )
         }
         composable(
             route = ScreensRoutes.HomeScreen.route,
