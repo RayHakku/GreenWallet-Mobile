@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -41,7 +42,7 @@ fun GetStarted(
     {
         Image(
             painter = painterResource(id = R.drawable.wallet_cuate2),
-            contentDescription = "Woman with a wallet",
+            contentDescription = stringResource(R.string.woman_with_a_wallet_getStarted),
         )
         Surface(
             modifier = Modifier
@@ -54,7 +55,7 @@ fun GetStarted(
             )
             {
                 Text(
-                    text = "Comece Agora",
+                    text = stringResource(R.string.start_now_getStarted),
                     textAlign = androidx.compose.ui.text.style.TextAlign.Center,
                     lineHeight = 5.sp,
                     fontSize = 32.sp,
@@ -63,7 +64,7 @@ fun GetStarted(
                     fontWeight = FontWeight.Bold,
                 )
                 Text(
-                    text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    text = stringResource(R.string.lorem_Ipsum_GetStarted),
                     textAlign = androidx.compose.ui.text.style.TextAlign.Center,
                     fontSize = 14.sp,
                     color = Color.hsl(0F, 0F,0F,0.3f),
@@ -89,7 +90,7 @@ fun GetStarted(
 
                 ) {
                     Text(
-                        text = "Criar Conta",
+                        text = stringResource(R.string.create_account_button_getStarted),
                         fontWeight = FontWeight.Bold,
                     )
                 }
@@ -108,7 +109,7 @@ fun GetStarted(
 
                 ) {
                     Text(
-                        text = "Entrar",
+                        text = stringResource(R.string.login_button_getStarted),
                         fontWeight = FontWeight.Bold,
                     )
                 }

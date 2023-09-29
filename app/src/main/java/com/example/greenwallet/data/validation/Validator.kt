@@ -1,11 +1,15 @@
 package com.example.greenwallet.data.validation
 
+import android.content.Context
+import com.example.greenwallet.R
+
 object Validator {
-    fun validateFirstName(firstName: String): ValidationRes {
+
+    fun validateFirstName(firstName: String, context: Context): ValidationRes {
         return if (firstName.isEmpty()) {
             ValidationRes(
                 isValid = false,
-                message = "Primeiro Nome nao pode estar vazio"
+                message = context.getString(R.string.first_name_must_not_be_empty)
             )
         } else {
             ValidationRes(
@@ -15,11 +19,11 @@ object Validator {
         }
     }
 
-    fun validateLastName(lastName: String): ValidationRes {
+    fun validateLastName(lastName: String, context: Context): ValidationRes {
         return if (lastName.isEmpty()) {
             ValidationRes(
                 isValid = false,
-                message = "Sobrenome nao pode estar vazio"
+                message = context.getString(R.string.surname_must_not_be_empty)
             )
         } else {
             ValidationRes(
@@ -29,17 +33,17 @@ object Validator {
         }
     }
 
-    fun validateEmail(email: String): ValidationRes{
+    fun validateEmail(email: String, context: Context): ValidationRes{
         val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
         return if (email.isEmpty()) {
             ValidationRes(
                 isValid = false,
-                message = "Email nao pode estar vazio"
+                message = context.getString(R.string.email_must_not_be_empty)
             )
         } else if (!email.matches(emailPattern.toRegex())) {
             ValidationRes(
                 isValid = false,
-                message = "Email invalido"
+                message = context.getString(R.string.invalid_email_address)
             )
         } else {
             ValidationRes(
@@ -49,16 +53,16 @@ object Validator {
         }
     }
 
-    fun validateCPF(cpf: String): ValidationRes {
+    fun validateCPF(cpf: String, context: Context): ValidationRes {
         return if (cpf.isEmpty()) {
             ValidationRes(
                 isValid = false,
-                message = "CPF nao pode estar vazio"
+                message = context.getString(R.string.security_social_number_must_not_be_empty)
             )
         } else if (cpf.length != 11) {
             ValidationRes(
                 isValid = false,
-                message = "CPF invalido"
+                message = context.getString(R.string.invalid_social_security_number)
             )
         } else {
             ValidationRes(
@@ -68,16 +72,16 @@ object Validator {
         }
     }
 
-    fun validatePassword(password: String): ValidationRes {
+    fun validatePassword(password: String, context: Context): ValidationRes {
         return if (password.isEmpty()) {
             ValidationRes(
                 isValid = false,
-                message = "Senha nao pode estar vazia"
+                message = context.getString(R.string.password_must_not_be_empty)
             )
         } else if (password.length < 8) {
             ValidationRes(
                 isValid = false,
-                message = "Senha deve conter no minimo 8 caracteres"
+                message = context.getString(R.string.password_must_be_at_least_8_characters_long)
             )
         } else {
             ValidationRes(
@@ -87,16 +91,16 @@ object Validator {
         }
     }
 
-    fun validateConfirmPassword(password: String, confirmPassword: String): ValidationRes {
+    fun validateConfirmPassword(password: String, confirmPassword: String, context: Context): ValidationRes {
         return if (confirmPassword.isEmpty()) {
             ValidationRes(
                 isValid = false,
-                message = "Confirmacao de senha nao pode estar vazia"
+                message = context.getString(R.string.password_confirmation_must_not_be_empty)
             )
         } else if (password != confirmPassword) {
             ValidationRes(
                 isValid = false,
-                message = "Senhas nao conferem"
+                message = context.getString(R.string.passwords_don_t_match)
             )
         } else {
             ValidationRes(
@@ -106,11 +110,11 @@ object Validator {
         }
     }
 
-    fun validateUserTerms(userTerms: Boolean): ValidationRes {
+    fun validateUserTerms(userTerms: Boolean, context: Context): ValidationRes {
         return if (!userTerms) {
             ValidationRes(
                 isValid = false,
-                message = "Aceite os termos de uso"
+                message = context.getString(R.string.agree_to_the_terms_of_use)
             )
         } else {
             ValidationRes(
