@@ -106,7 +106,7 @@ class RegisterViewModel (
     }
     private fun validateFirstName(): Boolean {
         val firstNameRes = Validator.validateFirstName(
-            firstName = registerState.value.firstName
+            firstName = registerState.value.firstName, navController.context
         )
         registerState.value = registerState.value.copy(
             firstNameError = firstNameRes.isValid,
@@ -117,7 +117,7 @@ class RegisterViewModel (
 
     private fun validateLastName(): Boolean {
         val lastNameRes = Validator.validateLastName(
-            lastName = registerState.value.lastName
+            lastName = registerState.value.lastName, navController.context
         )
         registerState.value = registerState.value.copy(
             lastNameError = lastNameRes.isValid,
@@ -128,7 +128,7 @@ class RegisterViewModel (
 
     private fun validateEmail(): Boolean {
         val emailRes = Validator.validateEmail(
-            email = registerState.value.email
+            email = registerState.value.email, navController.context
         )
         registerState.value = registerState.value.copy(
             emailError = emailRes.isValid,
@@ -139,7 +139,7 @@ class RegisterViewModel (
 
     private fun validatePassword(): Boolean {
         val passwordRes = Validator.validatePassword(
-            password = registerState.value.password
+            password = registerState.value.password, navController.context
         )
         registerState.value = registerState.value.copy(
             passwordError = passwordRes.isValid,
@@ -151,7 +151,7 @@ class RegisterViewModel (
     private fun validateConfirmPassword(): Boolean {
         val confirmPasswordRes = Validator.validateConfirmPassword(
             password = registerState.value.password,
-            confirmPassword = registerState.value.confirmPassword
+            confirmPassword = registerState.value.confirmPassword, navController.context
         )
         registerState.value = registerState.value.copy(
             confirmPasswordError = confirmPasswordRes.isValid,
@@ -162,7 +162,7 @@ class RegisterViewModel (
 
     private fun validateCPF(): Boolean {
         val cpfRes = Validator.validateCPF(
-            cpf = registerState.value.cpf
+            cpf = registerState.value.cpf, navController.context
         )
         registerState.value = registerState.value.copy(
             cpfError = cpfRes.isValid,
@@ -173,7 +173,7 @@ class RegisterViewModel (
 
     private fun validateUserTerms(): Boolean {
         val userTermsRes = Validator.validateUserTerms(
-            userTerms = registerState.value.userTermsError
+            userTerms = registerState.value.userTermsError, navController.context
         )
         registerState.value = registerState.value.copy(
             userTermsError = userTermsRes.isValid,

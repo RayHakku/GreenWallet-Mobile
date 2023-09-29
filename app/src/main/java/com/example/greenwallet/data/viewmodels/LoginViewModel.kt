@@ -1,5 +1,6 @@
 package com.example.greenwallet.data.viewmodels
 
+
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,7 +14,8 @@ import com.google.firebase.auth.FirebaseAuth
 
 class LoginViewModel(
     private val navController: NavController,
-    private val sharedPreferencesProvider: SharedPreferencesProvider?
+    private val sharedPreferencesProvider: SharedPreferencesProvider?,
+
 ) : ViewModel()
  {
      private val auth = FirebaseAuth.getInstance()
@@ -92,7 +94,7 @@ class LoginViewModel(
     }
      private fun validateEmail(): Boolean{
          val emailRes = Validator.validateEmail(
-             loginDataState.value.email
+             loginDataState.value.email, navController.context,
          )
             loginDataState.value = loginDataState.value.copy(
                 emailLoginError = emailRes.isValid,
@@ -103,7 +105,7 @@ class LoginViewModel(
 
      private fun validatePassword(): Boolean{
          val passwordRes = Validator.validatePassword(
-             loginDataState.value.password
+             loginDataState.value.password, navController.context
          )
          loginDataState.value = loginDataState.value.copy(
              passwordLoginError = passwordRes.isValid,

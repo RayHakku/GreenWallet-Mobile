@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -66,22 +67,21 @@ fun RegisterScreen(
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.baseline_arrow_back_ios_24),
-                contentDescription = "Arrow Back",
+                contentDescription = stringResource(R.string.arrow_back),
                 modifier = Modifier
-                    //.padding(start = 15.dp)
                     .clickable {
                         navigateBack()
                     }
             )
             Text(
-                text = "Crie sua conta",
+                text = stringResource(R.string.create_an_account),
                 fontSize = 25.sp,
                 fontWeight = FontWeight.Medium,
                 modifier = Modifier
                     .padding(top = 10.dp, start = 15.dp)
             )
             Text(
-                text = "Lorem ipsum dolor sit amet.",
+                text = stringResource(R.string.lorem_ipsum_registerScreen),
                 fontSize = 14.sp,
                 color = Color.hsl(0F, 0F, 0F, 0.45f),
                 modifier = Modifier
@@ -89,65 +89,65 @@ fun RegisterScreen(
             )
 
             MainTextFieldComponent(
-                placeholderValue = "Digite seu primeiro nome",
+                placeholderValue = stringResource(R.string.enter_your_first_name),
                 onTextSelected = {
                     registerViewModel.onEvent(UIEvent.FirstsNameChange(it)
                     )
                 },
                 errorStatus = registerViewModel.registerState.value.firstNameError,
                 errorMessage = registerViewModel.registerState.value.firstNameErrorMessage,
-                labelValue = "Primeiro Nome"
+                labelValue = stringResource(R.string.first_name)
             )
 
             MainTextFieldComponent(
-                placeholderValue = "Digite seu sobrenome",
+                placeholderValue = stringResource(R.string.enter_your_surname),
                 onTextSelected = {
                     registerViewModel.onEvent(UIEvent.LastNameChange(it)
                     )
                 },
                 errorStatus = registerViewModel.registerState.value.lastNameError,
                 errorMessage = registerViewModel.registerState.value.lastNameErrorMessage,
-                labelValue = "Sobrenome"
+                labelValue = stringResource(R.string.surname_label)
             )
             CPFTextFieldComponent(
-                placeholderValue = "Digite seu CPF",
+                placeholderValue = stringResource(R.string.enter_your_social_security_number),
                 onTextSelected = {
                     registerViewModel.onEvent(UIEvent.CpfChange(it)
                     )
                 },
                 errorStatus = registerViewModel.registerState.value.cpfError,
                 errorMessage = registerViewModel.registerState.value.cpfErrorMessage,
-                labelValue = "CPF"
+                labelValue = stringResource(R.string.social_security_number_label)
             )
 
             MainTextFieldComponent(
-                placeholderValue = "Digite seu email",
+                placeholderValue = stringResource(R.string.enter_your_email),
                 onTextSelected = {
                     registerViewModel.onEvent(UIEvent.EmailChange(it))
                 },
                 errorStatus = registerViewModel.registerState.value.emailError,
                 errorMessage = registerViewModel.registerState.value.emailErrorMessage,
-                labelValue = "Email"
+                labelValue = stringResource(R.string.email_label)
             )
             PasswordTextField(
-                placeholderValue = "Digite sua senha",
+                placeholderValue = stringResource(R.string.enter_your_password),
                 onTextSelected = {
                     registerViewModel.onEvent(UIEvent.PasswordChange(it)
                     )
                 },
                 errorStatus = registerViewModel.registerState.value.passwordError,
                 errorMessage = registerViewModel.registerState.value.passwordErrorMessage,
-                labelValue = "Senha"
+                labelValue = stringResource(R.string.password_label)
             )
             PasswordTextField(
-                placeholderValue = "Confirme sua senha",
+                placeholderValue = stringResource(R.string.confirm_your_password),
                 onTextSelected = {
                     registerViewModel.onEvent(UIEvent.ConfirmPasswordChange(it)
                     )
                 },
                 errorStatus = registerViewModel.registerState.value.confirmPasswordError,
                 errorMessage = registerViewModel.registerState.value.confirmPasswordErrorMessage,
-                labelValue = "Confirme a Senha"
+                labelValue = stringResource(R.string.confirm_password_label)
             )
             Row(
                 modifier = Modifier
@@ -161,7 +161,7 @@ fun RegisterScreen(
                     }
                 )
                 Text(
-                    text = "Eu aceito os termos de uso"
+                    text = stringResource(R.string.i_agree_to_the_terms_of_use)
                 )
             }
             Column(
@@ -173,16 +173,16 @@ fun RegisterScreen(
             )
             {
                 MainButtonMedium(
-                    value = "Criar conta",
+                    value = stringResource(id = R.string.create_account_button_getStarted),
                     onClick = {
                     registerViewModel.onEvent(UIEvent.RegisterButtonClick)
                     }
                 )
                 Text(
-                    text = "Ja possui uma conta?"
+                    text = stringResource(R.string.already_have_an_account)
                 )
                 SecondaryButtonMedium(
-                    value = "Entrar",
+                    value = stringResource(id = R.string.login_button_getStarted),
                     onClick = {
                     navigateToLogin()
                     }

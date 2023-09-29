@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -64,16 +65,20 @@ fun LoginScreen(
         loginViewModel.rememberMe()
     }
 
+    val bioTitle = stringResource(id = R.string.login_button_getStarted)
+    val bioSubtitle = stringResource(R.string.log_in_with_your_biometrics)
+    val bioCancel = stringResource(R.string.cancel)
+    val bioDescription = stringResource(R.string.touch_the_biometric_sensor_to_log_in)
 
     LaunchedEffect(true){
         if (checkedRememberMe) {
             println(auth.currentUser)
             Biometry.authenticateBio(
                 activity = context as FragmentActivity,
-                title = "Login",
-                subtitle = "Faça login com sua biometria",
-                description = "Toque no sensor de biometria para fazer login",
-                negativeText = "Cancelar",
+                title = bioTitle,
+                subtitle = bioSubtitle,
+                description = bioDescription,
+                negativeText = bioCancel,
                 onSuccess = {
                     loginViewModel.autoLogin()
                 },
@@ -99,7 +104,7 @@ fun LoginScreen(
     ) {
         Icon(painter = painterResource(
             id = R.drawable.baseline_arrow_back_ios_24),
-            contentDescription = "Arrow Back",
+            contentDescription = stringResource(id = R.string.arrow_back),
             modifier = Modifier
                 .padding(top = 15.dp)
                 .clickable {
@@ -107,7 +112,7 @@ fun LoginScreen(
                 }
         )
         Text(
-            text = "Login",
+            text = stringResource(id = R.string.login_button_getStarted),
             textAlign = TextAlign.Left,
             fontSize = 32.sp,
             fontWeight = FontWeight.SemiBold,
@@ -116,7 +121,7 @@ fun LoginScreen(
                 .padding(20.dp)
         )
         Text(
-            text = "Email",
+            text = stringResource(id = R.string.email_label),
             fontSize = 16.sp,
             fontWeight = FontWeight.SemiBold,
             modifier = Modifier
@@ -124,7 +129,7 @@ fun LoginScreen(
                 .padding(bottom = 5.dp)
         )
         MainTextFieldComponent(
-            placeholderValue = "Digite seu email",
+            placeholderValue = stringResource(id = R.string.enter_your_email),
             onTextSelected = {
                 loginViewModel.onEvent(
                     LoginState.EmailChange(it)
@@ -132,11 +137,11 @@ fun LoginScreen(
             },
             errorStatus = loginViewModel.loginDataState.value.emailLoginError,
             errorMessage = loginViewModel.loginDataState.value.emailLoginErrorMessage,
-            labelValue ="Email",
+            labelValue = stringResource(id = R.string.email_label),
         )
 
         Text(
-            text = "Senha",
+            text = stringResource(id = R.string.password_label),
             fontSize = 16.sp,
             fontWeight = FontWeight.SemiBold,
             modifier = Modifier
@@ -144,7 +149,7 @@ fun LoginScreen(
         )
 
         PasswordTextField(
-            placeholderValue = "Digite sua senha",
+            placeholderValue = stringResource(id = R.string.enter_your_password),
             onTextSelected = {
                 loginViewModel.onEvent(
                     LoginState.PasswordChange(it)
@@ -152,7 +157,7 @@ fun LoginScreen(
             },
             errorStatus = loginViewModel.loginDataState.value.passwordLoginError,
             errorMessage = loginViewModel.loginDataState.value.passwordLoginErrorMessage,
-            labelValue ="Senha"
+            labelValue = stringResource(id = R.string.password_label)
         )
 
         Row (
@@ -170,7 +175,7 @@ fun LoginScreen(
                 }
             )
             Text(
-                text = "Lembrar conta",
+                text = stringResource(R.string.remember_me),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.SemiBold,
             )
@@ -179,7 +184,7 @@ fun LoginScreen(
                     .width(84.dp)
             )
             Text(
-                text = "Esqueci minha senha",
+                text = stringResource(R.string.forgot_my_password),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = Color.hsl(0F, 0F, 0F, 0.5f),
@@ -213,7 +218,7 @@ fun LoginScreen(
                     .padding(20.dp)
             ) {
                 Text(
-                    text = "Login",
+                    text = stringResource(id = R.string.login_button_getStarted),
                     fontWeight = FontWeight.Bold,
                 )
             }
