@@ -33,16 +33,16 @@ ira ser permitido ao usuario adicionar e gerenciar sua renda e despesas, criar o
   3. Tela de adicionar despesas
 
 ## Requisitos
-  1. Autenticacao
+  1. Autenticacao :white_check_mark:
   2. MVP
-  3. Sensor Biometrico
+  3. Sensor Biometrico :white_check_mark:
   4. Menu
   5. Navigation Bar
-  6. Gradle
-  7. l18n internatinalization
-  8. L10n Localization
+  6. Gradle :white_check_mark:
+  7. l18n internatinalization :white_check_mark:
+  8. L10n Localization :white_check_mark:
   9. Retrofit 
-  10. Material Design
+  10. Material Design :white_check_mark:
 
 ## Sequence Diagram
 ![Sequence Diagram of a Login Flow](GreenWalletLoginFlowDiagram.png)
