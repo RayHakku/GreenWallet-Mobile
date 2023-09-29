@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="start_now_getStarted">Comece agora</string>
+    <string name="woman_with_a_wallet_getStarted">Mulher com carteira</string>
+    <string name="create_account_button_getStarted">Criar conta</string>
+    <string name="login_button_getStarted">Entrar</string>
+    <string name="arrow_back">Seta para trás</string>
+    <string name="create_an_account">Crie uma conta</string>
+    <string name="enter_your_first_name">Digite seu primeiro nome</string>
+    <string name="first_name">Primeiro Nome</string>
+    <string name="already_have_an_account">Já possui uma conta?</string>
+    <string name="i_agree_to_the_terms_of_use">Concordo com os termos de uso</string>
+    <string name="confirm_password_label">Confirme a senha</string>
+    <string name="confirm_your_password">Confirme sua senha</string>
+    <string name="password_label">Senha</string>
+    <string name="enter_your_password">Digite sua senha</string>
+    <string name="email_label">Email</string>
+    <string name="enter_your_email">Digite seu e-mail</string>
+    <string name="social_security_number_label">CPF</string>
+    <string name="enter_your_social_security_number">Digite seu CPF</string>
+    <string name="surname_label">Sobrenome</string>
+    <string name="enter_your_surname">Digite seu sobrenome</string>
+    <string name="two_persons_lifting_a_trophy">Duas pessoas levantando um troféu</string>
+    <string name="successful">Sucesso!</string>
+    <string name="you_ve_been_registered">Você foi registrado!</string>
+    <string name="finish">Finalizar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="touch_the_biometric_sensor_to_log_in">Toque no sensor biométrico para fazer login</string>
+    <string name="log_in_with_your_biometrics">Faça o login com sua biometria</string>
+    <string name="remember_me">Lembrar de mim</string>
+    <string name="forgot_my_password">Esqueci a minha senha</string>
+    <string name="first_name_must_not_be_empty">O primeiro nome não pode estar vazio</string>
+    <string name="surname_must_not_be_empty">O sobrenome não pode estar vazio</string>
+    <string name="email_must_not_be_empty">O e-mail não pode estar vazio</string>
+    <string name="invalid_email_address">Endereço de e-mail inválido</string>
+    <string name="security_social_number_must_not_be_empty">O CPF não pode estar vazio</string>
+    <string name="invalid_social_security_number">CPF inválido</string>
+    <string name="password_must_not_be_empty">A senha não pode estar vazia</string>
+    <string name="password_must_be_at_least_8_characters_long">A senha deve ter pelo menos 8 caracteres</string>
+    <string name="password_confirmation_must_not_be_empty">A confirmação da senha não deve estar vazia</string>
+    <string name="passwords_don_t_match">As senhas não coincidem</string>
+    <string name="agree_to_the_terms_of_use">Concorde com os termos de uso</string>
+
+</resources>

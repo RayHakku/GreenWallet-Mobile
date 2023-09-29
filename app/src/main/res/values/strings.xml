@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name">GreenWallet</string>
+    <string name="app_name" translatable="false">GreenWallet</string>
     <string name="start_now_getStarted">Start Now</string>
-    <string name="lorem_Ipsum_GetStarted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+    <string name="lorem_Ipsum_GetStarted" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
     <string name="woman_with_a_wallet_getStarted">Woman with a wallet</string>
     <string name="create_account_button_getStarted">Create Account</string>
     <string name="login_button_getStarted">Login</string>
     <string name="arrow_back">Arrow Back</string>
     <string name="create_an_account">Create an account</string>
-    <string name="lorem_ipsum_registerScreen">Lorem ipsum dolor sit amet.</string>
+    <string name="lorem_ipsum_registerScreen" translatable="false">Lorem ipsum dolor sit amet.</string>
     <string name="enter_your_first_name">Enter your first name</string>
     <string name="first_name">First Name</string>
     <string name="already_have_an_account">Already have an account?</string>
