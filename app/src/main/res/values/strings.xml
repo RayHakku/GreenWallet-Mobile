@@ -42,4 +42,6 @@
     <string name="password_confirmation_must_not_be_empty">Password confirmation must not be empty</string>
     <string name="passwords_don_t_match">Passwords don\'t match</string>
     <string name="agree_to_the_terms_of_use">Agree to the terms of use</string>
+    <string name="hello">Hello!</string>
+    <string name="logout">Logout</string>
 </resources>
