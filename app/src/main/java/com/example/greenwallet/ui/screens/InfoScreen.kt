@@ -1,0 +1,25 @@
+package com.example.greenwallet.ui.screens
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.navigation.NavController
+import com.example.greenwallet.ui.NavigationBottomBar
+
+@Composable
+fun InfoScreen(navController: NavController, userId: String){
+
+    Column (
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color.hsl(104F, 1F, 0.9F, 1f))
+    ) {
+        Text(text = "Info Screen")
+        NavigationBottomBar(navController = navController , userId = userId )
+    }
+
+}
