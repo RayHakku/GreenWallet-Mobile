@@ -8,6 +8,7 @@ import androidx.navigation.navArgument
 import com.example.greenwallet.data.classes.SharedPreferencesProvider
 import com.example.greenwallet.ui.screens.GetStarted
 import com.example.greenwallet.ui.screens.HomeScreen
+import com.example.greenwallet.ui.screens.InfoScreen
 import com.example.greenwallet.ui.screens.LoginScreen
 import com.example.greenwallet.ui.screens.RegisterScreen
 import com.example.greenwallet.ui.screens.RegisterSuccess
@@ -60,6 +61,16 @@ fun SetupNavGraph(
             )
         ) {
             HomeScreen(navController, it.arguments?.getString("userId") ?: "")
+        }
+        composable(
+            route = ScreensRoutes.InfoScreen.route,
+            arguments = listOf(
+                navArgument("userId") {
+                    defaultValue = ""
+                }
+            )
+        ) {
+            InfoScreen( navController, it.arguments?.getString("userId") ?: "")
         }
     }
 }

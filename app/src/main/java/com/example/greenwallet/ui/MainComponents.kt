@@ -1,12 +1,19 @@
 package com.example.greenwallet.ui
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
@@ -322,4 +329,42 @@ fun DropDownMenu(
         }
     }
 
+}
+
+@Composable
+fun NavigationBottomBar(
+    navController: androidx.navigation.NavController,userId: String
+){
+    BottomAppBar (
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(50.dp),
+    ){
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 50.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Icon(
+                modifier = Modifier
+                    .clickable {
+                        navController.navigate("home_screen/$userId")
+                    },
+                imageVector = Icons.Default.Home,
+                contentDescription = "Home Icon",
+                tint = Color.Black
+            )
+            Icon(
+                modifier = Modifier
+                    .clickable {
+                        navController.navigate("info_screen/$userId")
+                    },
+                imageVector = Icons.Default.Info,
+                contentDescription = "Info Icon",
+                tint = Color.Black
+            )
+        }
+    }
 }
