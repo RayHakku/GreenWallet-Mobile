@@ -41,5 +41,15 @@
     <string name="password_confirmation_must_not_be_empty">A confirmação da senha não deve estar vazia</string>
     <string name="passwords_don_t_match">As senhas não coincidem</string>
     <string name="agree_to_the_terms_of_use">Concorde com os termos de uso</string>
+    <string name="hello">Ola!</string>
+    <string name="logout">Deslogar</string>
+    <string name="total_expense">Despesas totais</string>
+    <string name="total_income">Renda total</string>
+    <string name="total_balance">Saldo total</string>
+    <string name="banks">Bancos</string>
+    <string name="balance">Saldo</string>
+    <string name="arrow_down">Seta para baixo</string>
+    <string name="see_all">Ver todos</string>
+    <string name="transactions">Transações</string>
 
 </resources>

@@ -143,12 +143,12 @@ fun HomeScreen(navController: NavController, s: String) {
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
-                        text = "Transações",
+                        text = stringResource(R.string.transactions),
                         fontSize = 18.sp,
                         fontWeight = FontWeight.SemiBold
                     )
                     Text(
-                        text = "Ver todas",
+                        text = stringResource(R.string.see_all),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.SemiBold,
                     )

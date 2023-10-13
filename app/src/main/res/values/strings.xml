@@ -50,4 +50,6 @@
     <string name="banks">Banks</string>
     <string name="balance">Balance</string>
     <string name="arrow_down">Arrow Down</string>
+    <string name="see_all">See All</string>
+    <string name="transactions">Transactions</string>
 </resources>
