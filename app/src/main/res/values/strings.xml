@@ -44,4 +44,10 @@
     <string name="agree_to_the_terms_of_use">Agree to the terms of use</string>
     <string name="hello">Hello!</string>
     <string name="logout">Logout</string>
+    <string name="total_expense">Total Expense</string>
+    <string name="total_income">Total Income</string>
+    <string name="total_balance">Total Balance</string>
+    <string name="banks">Banks</string>
+    <string name="balance">Balance</string>
+    <string name="arrow_down">Arrow Down</string>
 </resources>

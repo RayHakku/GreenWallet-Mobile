@@ -1,29 +1,19 @@
 package com.example.greenwallet.ui.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.material.icons.filled.ShoppingCart
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
-import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -39,6 +29,10 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.greenwallet.R
 import com.example.greenwallet.data.classes.SharedPreferencesProvider
+import com.example.greenwallet.ui.CardBalance
+import com.example.greenwallet.ui.CardBanks
+import com.example.greenwallet.ui.CardIncomeExpenses
+import com.example.greenwallet.ui.CardTrasanction
 import com.example.greenwallet.ui.DropDownMenu
 import com.example.greenwallet.ui.NavigationBottomBar
 import com.google.firebase.auth.FirebaseAuth
@@ -62,6 +56,7 @@ fun HomeScreen(navController: NavController, s: String) {
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
+            .background(color = Color.hsl(104F, 1F, 0.9F, 1f))
     ) {
         Column(
             modifier = Modifier
@@ -95,89 +90,9 @@ fun HomeScreen(navController: NavController, s: String) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    Column {
-                        Text(
-                            text = "Total Balance",
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Normal,
-                        )
-                        Text(
-                            text = "R$ 0,00",
-                            fontSize = 32.sp,
-                            fontWeight = FontWeight.SemiBold,
-                        )
-                    }
-                }
+                CardBalance(balanceText = stringResource(R.string.total_balance), balanceValue = "R$ 0,00")
                 Spacer(modifier = Modifier.height(16.dp))
-                Card (
-                    modifier = Modifier
-                        .fillMaxWidth()
-                    ,
-
-                    ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceEvenly
-
-                    ) {
-                        Row (
-                            verticalAlignment = Alignment.CenterVertically,
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.KeyboardArrowDown,
-                                contentDescription = "Arrow Down",
-                                tint = Color.Green
-                            )
-                            Column {
-                                Text(
-                                    text = "Total Income",
-                                    fontSize = 12.sp,
-                                    fontWeight = FontWeight.Normal,
-                                )
-                                Text(
-                                    text = "R$ 0,00",
-                                    fontSize = 18.sp,
-                                    fontWeight = FontWeight.SemiBold,
-                                )
-                            }
-                        }
-
-                        Divider(
-                            modifier = Modifier
-                                .height(30.dp)
-                                .width(1.dp),
-                            color = Color.Black
-                        )
-                        Row (
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceEvenly
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.KeyboardArrowUp,
-                                contentDescription = "Arrow Down",
-                                tint = Color.Red
-                            )
-                            Column {
-                                Text(
-                                    text = "Total Expense",
-                                    fontSize = 12.sp,
-                                    fontWeight = FontWeight.Normal,
-                                )
-                                Text(
-                                    text = "R$ 0,00",
-                                    fontSize = 18.sp,
-                                    fontWeight = FontWeight.SemiBold,
-                                )
-                            }
-                        }
-                    }
-                }
+                CardIncomeExpenses(ValueIncome = "R$ 10,00", ValueExpenses = "R$10,00")
             }
             Spacer(
                 modifier = Modifier
@@ -195,7 +110,10 @@ fun HomeScreen(navController: NavController, s: String) {
             Column {
                 Row {
                     Text(
-                        text = "Bancos"
+                        text = stringResource(R.string.banks),
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color.hsl(112f,1f,0.09f,1f)
                     )
                 }
                 Spacer(
@@ -207,25 +125,7 @@ fun HomeScreen(navController: NavController, s: String) {
                     verticalAlignment = Alignment.CenterVertically,
                     content = {
                         items(10){
-
-                            Card {
-                                Row {
-                                    Icon(imageVector = Icons.Default.Home, contentDescription = "Home Icon")
-                                    Text(text = "Banco $it")
-                                }
-                                Column {
-                                    Text(text = "Saldo")
-                                    Text(text ="R$ 0,00")
-                                }
-                            }
-                            Spacer(modifier = Modifier.width(10.dp))
-                            Divider(
-                                modifier = Modifier
-                                    .height(30.dp)
-                                    .width(1.dp),
-                                color = Color.Black
-                            )
-                            Spacer(modifier = Modifier.width(10.dp))
+                            CardBanks(items = it, namebank = "Banco", valueBalance =  "R$ 0,00")
                         }
                     } )
             }
@@ -272,58 +172,11 @@ fun HomeScreen(navController: NavController, s: String) {
                         .height(500.dp),
                     content = {
                     items(10){
-                        ElevatedCard  (
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .fillMaxHeight()
-                                .padding(horizontal = 10.dp),
-                            elevation = CardDefaults.cardElevation(
-                                defaultElevation = 1.dp
-                            ) ,
-                        ) {
-                            Row (
-                                modifier = Modifier
-                                    .fillMaxHeight(),
-                                horizontalArrangement = Arrangement.Center,
-                                verticalAlignment = Alignment.CenterVertically,
-                            ) {
-                                Icon(
-                                    modifier = Modifier
-                                        .padding(horizontal = 10.dp, vertical = 15.dp),
-                                    imageVector = Icons.Default.ShoppingCart,
-                                    contentDescription = "Shopping Cart Icon"
-                                )
-                                Column{
-                                    Text(
-                                        text = "Compra",
-                                        fontSize = 16.sp,
-                                        fontWeight = FontWeight.SemiBold
-                                    )
-                                    Text(
-                                        text = "Descrição",
-                                        fontSize = 14.sp,
-                                        fontWeight = FontWeight.Normal
-                                    )
-                                }
-                                Row (
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .fillMaxHeight(),
-                                    horizontalArrangement = Arrangement.End,
-                                    verticalAlignment = Alignment.CenterVertically,
-                                ) {
-                                    Text(
-                                        modifier = Modifier
-                                            .padding(end = 10.dp),
-                                        text ="R$ 0,00",
-                                        fontSize = 16.sp,
-                                        fontWeight = FontWeight.SemiBold
-                                    )
-                                }
-                            }
-
-                        }
-                        Spacer(modifier = Modifier.height(10.dp))
+                        CardTrasanction(
+                            nameTransaction = "Compra",
+                            nameDescription = "Descricao",
+                            valueTransaction = "R$ 0,00",
+                        )
                     }
                 })
             }
