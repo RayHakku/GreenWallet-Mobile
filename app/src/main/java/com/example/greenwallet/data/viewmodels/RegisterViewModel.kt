@@ -94,8 +94,8 @@ class RegisterViewModel (
                         cpf = registerState.value.cpf
                     )
 
-                    val userId = usersRef.push().key ?: ""
-                    usersRef.child(userId).setValue(user)
+                    /*val userId = usersRef.push().key ?: ""*/
+                    usersRef.child(user.uid).setValue(user)
 
                     navController.navigate(ScreensRoutes.RegisterSuccessScreen.route)
                 }
@@ -162,7 +162,8 @@ class RegisterViewModel (
 
     private fun validateCPF(): Boolean {
         val cpfRes = Validator.validateCPF(
-            cpf = registerState.value.cpf, navController.context
+            cpf = registerState.value.cpf, navController.context,
+            databaseReference = usersRef
         )
         registerState.value = registerState.value.copy(
             cpfError = cpfRes.isValid,
@@ -191,6 +192,9 @@ class RegisterViewModel (
                 && validateCPF()
                 && validateUserTerms()
     }
+
+
+
 }
 
 

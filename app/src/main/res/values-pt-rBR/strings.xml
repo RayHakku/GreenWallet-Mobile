@@ -51,5 +51,6 @@
     <string name="arrow_down">Seta para baixo</string>
     <string name="see_all">Ver todos</string>
     <string name="transactions">Transações</string>
+    <string name="social_security_number_already_registered">CPF Ja cadastrado</string>
 
 </resources>

@@ -16,41 +16,47 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.greenwallet.R
 import com.example.greenwallet.data.classes.SharedPreferencesProvider
+import com.example.greenwallet.data.classes.ViewModelFactory
+import com.example.greenwallet.data.viewmodels.HomeViewModel
 import com.example.greenwallet.ui.CardBalance
 import com.example.greenwallet.ui.CardBanks
 import com.example.greenwallet.ui.CardIncomeExpenses
 import com.example.greenwallet.ui.CardTrasanction
 import com.example.greenwallet.ui.DropDownMenu
 import com.example.greenwallet.ui.NavigationBottomBar
-import com.google.firebase.auth.FirebaseAuth
 
 @Composable
-fun HomeScreen(navController: NavController, s: String) {
+fun HomeScreen(
+    navController: NavController,
+    s: String,
+    sharedPreferencesProvider: SharedPreferencesProvider,
+    HomeScreenViewModel:HomeViewModel = viewModel(
+        factory = ViewModelFactory(navController, sharedPreferencesProvider )
+    )
+) {
 
-    val auth = FirebaseAuth.getInstance()
-    val sharedPreferencesProvider = SharedPreferencesProvider(LocalContext.current)
+    /*val sharedPreferencesProvider = SharedPreferencesProvider(LocalContext.current)*/
 
-    fun logout(){
-        auth.signOut()
-        sharedPreferencesProvider.saveBoolean("rememberMe", false)
-        navController.popBackStack()
-        navController.navigate("login_screen")
+
+    LaunchedEffect(key1 = true){
+        HomeScreenViewModel.getCurrentUserData(s).let{
+            HomeScreenViewModel.cUser = it
+        }
     }
 
-
+    val userName = HomeScreenViewModel.cUser.firstName + " " + HomeScreenViewModel.cUser.lastName
 
     Column (
         modifier = Modifier
@@ -76,14 +82,14 @@ fun HomeScreen(navController: NavController, s: String) {
 
                     )
                     Text(
-                        text = s,
+                        text = userName,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
                     )
                 }
 
                 DropDownMenu() {
-                    logout()
+                    HomeScreenViewModel.logout()
                 }
             }
             Column(
@@ -190,8 +196,8 @@ fun HomeScreen(navController: NavController, s: String) {
 
 
 
-@Preview (showBackground = true)
+/*@Preview (showBackground = true)
 @Composable
 fun HomePrev() {
     HomeScreen(rememberNavController(), "teste")
-}
+}*/

@@ -52,4 +52,5 @@
     <string name="arrow_down">Arrow Down</string>
     <string name="see_all">See All</string>
     <string name="transactions">Transactions</string>
+    <string name="social_security_number_already_registered" >Social Security Number Already Registed</string>
 </resources>

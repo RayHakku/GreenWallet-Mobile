@@ -3,7 +3,7 @@ package com.example.greenwallet.data.classes
 data class User(
     val uid: String = "",
     var firstName: String = "",
-    val lastName: String = "",
-    val email: String = "",
-    val cpf: String = "",
+    var lastName: String = "",
+    var email: String = "",
+    var cpf: String = "",
 )

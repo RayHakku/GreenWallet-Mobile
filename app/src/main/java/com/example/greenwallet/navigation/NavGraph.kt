@@ -60,7 +60,7 @@ fun SetupNavGraph(
                 }
             )
         ) {
-            HomeScreen(navController, it.arguments?.getString("userId") ?: "")
+            HomeScreen(navController, it.arguments?.getString("userId") ?: "", sharedPreferencesProvider)
         }
         composable(
             route = ScreensRoutes.InfoScreen.route,

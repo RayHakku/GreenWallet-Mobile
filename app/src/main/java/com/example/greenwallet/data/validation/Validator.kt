@@ -2,6 +2,7 @@ package com.example.greenwallet.data.validation
 
 import android.content.Context
 import com.example.greenwallet.R
+import com.google.firebase.database.DatabaseReference
 
 object Validator {
 
@@ -53,7 +54,7 @@ object Validator {
         }
     }
 
-    fun validateCPF(cpf: String, context: Context): ValidationRes {
+    fun validateCPF(cpf: String, context: Context, databaseReference: DatabaseReference): ValidationRes {
         return if (cpf.isEmpty()) {
             ValidationRes(
                 isValid = false,
@@ -64,7 +65,12 @@ object Validator {
                 isValid = false,
                 message = context.getString(R.string.invalid_social_security_number)
             )
-        } else {
+        } /*else if (!existCPF(databaseReference, cpf)) {
+            ValidationRes(
+                isValid = false,
+                message = context.getString(R.string.social_security_number_already_registered)
+            )
+        }*/ else {
             ValidationRes(
                 isValid = true,
                 message = ""
@@ -123,6 +129,15 @@ object Validator {
             )
         }
     }
+
+    /*private fun existCPF (databaseReference: DatabaseReference, cpf: String): Boolean{
+        if(databaseReference.child(cpf).get().addOnCompleteListener{
+            it.exists()
+            }){
+            return false
+        }
+        return true
+    }*/
 
 }
 
